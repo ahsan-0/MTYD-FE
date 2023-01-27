@@ -1,7 +1,8 @@
 
-function Table() {
+function Table({ size }) {
+    console.log(size);
     return (
-        <mesh>
+        <mesh >
             <meshStandardMaterial />
             <boxGeometry />
         </mesh>
