@@ -1,20 +1,21 @@
 import { useState } from "react";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { Camera } from "three";
-import { CameraControls, Sky, Sparkles } from "@react-three/drei";
-import LiveCell from "./components/LiveCell";
-import DeadCell from "./components/DeadCell";
+import { AxesHelper, Camera } from "three";
+import { CameraControls, Center, Sky, Sparkles } from "@react-three/drei";
 import PlayArea from "./components/PlayArea";
 
 function App() {
   return (
     <div className="App">
       <Canvas>
+        <axesHelper position={[0, 1.5, 0]} scale={2}/>
         <Sparkles {...props} />
-        <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0} />
+        {/*<Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0} />*/}
         <CameraControls />
+        <Center>
         <PlayArea />
+        </Center>
       </Canvas>
     </div>
   );
