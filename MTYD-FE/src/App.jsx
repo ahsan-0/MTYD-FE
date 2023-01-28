@@ -1,27 +1,34 @@
 import { useState } from "react";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { AxesHelper, Camera } from "three";
+import { Camera } from "three";
 import { CameraControls, Center, Sky, Sparkles } from "@react-three/drei";
 import PlayArea from "./components/PlayArea";
+import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
 
 function App() {
   return (
     <div className="App">
       <Canvas>
-        <axesHelper position={[0, 1.5, 0]} scale={2}/>
         <Sparkles {...props} />
-        {/*<Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0} />*/}
+        <pointLight position={[10, 0, 10]}/>
+        <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0} />
         <CameraControls />
-        <Center>
-        <PlayArea />
-        </Center>
+        <Center><PlayArea /></Center>
+        {false && <><Suspense fallback={<Html center>Loading.</Html>}>
+        <Scene />
+      </Suspense>
+        <EffectComposer multisampling={0} disableNormalPass={true}>
+          <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
+          <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} opacity={3}/>
+          <Noise opacity={0.02} />
+          <Vignette eskil={false} offset={0.1} darkness={1.1} />
+        </EffectComposer></>}
+      
       </Canvas>
     </div>
   );
 }
-
-export default App;
 
 const props = {
   /** Number of particles (default: 100) */ count: 10000,
@@ -38,3 +45,5 @@ const props = {
   /** Movement factor (default: 1) */
   noise: 1,
 };
+
+export default App;
