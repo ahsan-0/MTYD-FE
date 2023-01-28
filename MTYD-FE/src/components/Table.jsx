@@ -78,3 +78,27 @@ export default Table;
 
 //turn the table into a flat plane
 //set the table size to be the same as all of the cells
+
+
+
+/*
+
+  const texture = new THREE.TextureLoader().load(img);
+  const [boxLength, setBoxLength] = useState(15);
+
+  const boardString = "111111111111111 ".repeat(15);
+  const boardArray = (str => str.split(" ").map(m => m.split("").map(m => +m)))(boardString);
+
+  useEffect(() => {
+    const cellCoords = [];
+    for (let i = 0; i < boardArray.length; i++) {
+      for (let j = 0; j < boardArray[i].length; j++) {
+        cellCoords.push({ coords: [i, 0, j], alive: boardArray[i][j] });
+      }
+    }
+    //setBoardConfiguration(cellCoords);
+    setBoxLength(cellCoords[cellCoords.length - 1].coords[0]);
+  },[]);
+
+ // const boxLength = size[size.length - 1].coords[0]
+*/
