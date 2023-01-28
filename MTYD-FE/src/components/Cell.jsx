@@ -19,5 +19,5 @@ export default Cell;
 //add click handler to cell component
 //must be defined in parent component and passed down as prop without being called
 //git push origin threelayer
-//not working
-//<Bloom mipmapBlur luminanceThreshold={1} mipmapBlur />
+
+//not working - <Bloom mipmapBlur luminanceThreshold={1} mipmapBlur />
