@@ -27,9 +27,16 @@ body,
 }
 
 .anim {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
+  position: absolute;
+  width: 100%;
+  top: 40px;
+}
+
+.game-controls {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
+  z-index: 100;
 }
 
 a {
@@ -71,14 +78,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-.game-controls {
-  position: absolute;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  margin: 170px 0 0 10vw;
 }
 
 #nav {
