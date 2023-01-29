@@ -11,29 +11,29 @@ import GameControls from './GameControls';
 function Zoom() {
     const { zoom } = useControls({ zoom: { value: 0.5, min: 0.05, max: 1.1, step: 0.01 } })
     return useFrame((state) => {
-      state.camera.zoom = THREE.MathUtils.lerp(state.camera.zoom, zoom * 4, 0.1)
+      state.camera.zoom = THREE.MathUtils.lerp(state.camera.zoom, zoom * 5.3, 0.1)
       state.camera.updateProjectionMatrix()
     })
   };
 
 function ThreeDimensionalGame() {
   const [boardConfiguration, setBoardConfiguration] = useState('');
-  const [controls, setControls] = useState({button: '', speedModifier: 0});
  
   return (
   <main id="three-d-main">
-  <GameControls setControls={setControls}/>
+  <GameControls/>
   <section className="anim">
   <Canvas>
     <PerspectiveCamera makeDefault fov={75} position={[25, 25, 15]}/>
     <Zoom/>
+    <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>
     <Sparkles {...props}/>
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
     <OrbitControls/>
     <Suspense fallback={null}>
     <Center>
-      <PlayArea controls={controls} setBoardConfiguration={setBoardConfiguration}/>
+      <PlayArea setBoardConfiguration={setBoardConfiguration}/>
       {boardConfiguration && <Table boardConfiguration={boardConfiguration}/>}
     </Center>
     </Suspense>
@@ -44,8 +44,6 @@ function ThreeDimensionalGame() {
 };
 
 export default ThreeDimensionalGame;
-
-// <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>
 
 const props = {
     /** Number of particles (default: 100) */ count: 20000,
