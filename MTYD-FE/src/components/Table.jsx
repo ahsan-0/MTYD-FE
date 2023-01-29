@@ -1,14 +1,16 @@
-import img from "./green.png";
+import img from "../assets/green.png";
 import * as THREE from "three";
+//import { useContext } from "react";
+//import { BoardConfigContext } from "../contexts/BoardConfigurationContext";
 
-function Table({ size }) {
+function Table({boardConfiguration}) {
   const texture = new THREE.TextureLoader().load(img);
-  const boxLength = size[size.length - 1].coords[0]
+  //const { boardConfiguration } = useContext(BoardConfigContext);
+  const boxLength = boardConfiguration;
+  
   return (
     <>
-      <mesh
-        position={[boxLength / 2, -1, boxLength / 2,
-        ]}
+      <mesh position={[boxLength / 2, -1, boxLength / 2]}
       >
         <meshMatcapMaterial
           opacity={1}
@@ -41,8 +43,7 @@ function Table({ size }) {
           color={"white"}
           matcap={texture}
         />
-        <boxGeometry args={[
-          boxLength + 1, 0.6, 1]} />
+        <boxGeometry args={[boxLength + 1, 0.6, 1]}/>
       </mesh>
 
       <mesh position={[boxLength + 1, -0.2, boxLength/2]}>
@@ -55,7 +56,7 @@ function Table({ size }) {
           matcap={texture}
         />
         <boxGeometry args={[1, 0.6, boxLength + 3
-        ]} />
+        ]}/>
       </mesh>
 
       <mesh position={[-1, -0.2, boxLength / 2]}>
@@ -67,7 +68,7 @@ function Table({ size }) {
           color={"white"}
           matcap={texture}
         />
-        <boxGeometry args={[1, 0.6, boxLength + 3]} />
+        <boxGeometry args={[1, 0.6, boxLength + 3]}/>
       </mesh>
     </>
   );
