@@ -6,18 +6,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState } from "react";
 import HiddenSidebar from './HiddenSidebar';
 
-const Nav323 = () => {
-
-return (<nav>
-    <Link to="automatrix/">Home</Link>
-    <Link to="3dgame">3D game</Link>
-    <Link to="2dgame">2D game</Link>
-    <Link to="patterns">Patterns</Link>
-    <Link to="users">Users</Link>
-</nav>)
-};
-
-
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
 
@@ -56,6 +44,5 @@ const navigate = useNavigate();
     </>
   );
 }
-
 
 export default Navigation;
