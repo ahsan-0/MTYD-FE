@@ -5,11 +5,14 @@ import './index.css';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter } from 'react-router-dom';
+import { GameControlsProvider } from './contexts/GameControlsContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+    <GameControlsProvider>
+     <App />
+    </GameControlsProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )
