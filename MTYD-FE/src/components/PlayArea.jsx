@@ -1,6 +1,8 @@
 import Cell from "./Cell";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { GameControlsContext } from "../contexts/GameControlsContext";
+import { Physics, useBox } from "@react-three/cannon";
 
 const boardString2 = "000110000111011 101110110100111 100011000101111 110011110011111 001001110000111 011101011101111 011011111010111 01100111001011 111011111110111 001111011101111 01110100111111 011010000110111 011111010001011 111011011110111 001010011101111";
 const boardString1 = "111111111111111 ".repeat(15);
@@ -8,12 +10,14 @@ const boardString = "000000000000000 000000000000000 000000000000000 00000000000
 const boardArray = (str => str.split(" ").map(m => m.split("").map(m => +m)))(boardString);
 
 
-function PlayArea({setBoardConfiguration, controls}) {
+function PlayArea({setBoardConfiguration}) {
   const [gameIsRunning, setGameIsRunning] = useState(false);
   const [gameGrid, setGameGrid] = useState(() => boardArray);
   const [interval, setInterval] = useState(500);
   const [edgeCondition, setEdgeCondition] = useState('wrap');
   const [enableInteract, setEnableInteract] = useState(true);
+
+  const { controls } = useContext(GameControlsContext);
 
   const gameRef = useRef(gameIsRunning);
   gameRef.current = gameIsRunning;
@@ -24,7 +28,6 @@ function PlayArea({setBoardConfiguration, controls}) {
   
   useEffect(() => {
   const {button} = controls;
-  console.log(button);
     if (button === "start") {
       setGameIsRunning(true);
       gameRef.current = true;
@@ -100,12 +103,9 @@ function PlayArea({setBoardConfiguration, controls}) {
   }, [gameGrid]);
 
   return (
-  <>
-    {boardConfig(gameGrid).map(cell => (
-    <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={enableInteract}/>
-    ))}
-  </>
+    boardConfig(gameGrid).map(cell => {
+      return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={enableInteract}/>
+     })
   );
 }
 export default PlayArea;
-
