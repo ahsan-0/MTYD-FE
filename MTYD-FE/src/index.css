@@ -15,20 +15,22 @@
   -webkit-text-size-adjust: 100%;
   
 }
-.App {
-  width: 100vw;
-  height: 100vh;
-}
 
 html,
 body,
-#root {
+#root,
+.anim {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+.anim {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
 
 a {
   font-weight: 500;
@@ -69,6 +71,62 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.game-controls {
+  position: absolute;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  margin: 170px 0 0 10vw;
+}
+
+#nav {
+ width: 100vw;
+ position: absolute;
+ z-index: 999;
+}
+
+#offcanvas {
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  background-color: rgb(234, 68, 159);
+}
+
+button.btn-secondary, #bg-nested-dropdown {
+  font-size: 18px;
+}
+
+button#clear {
+  background-color: rgb(255, 115, 0);
+}
+
+.leva-c-bDGmTT {
+  justify-content: center;
+}
+
+.leva-c-kWgxhW {
+  margin-top: 150px;
+  margin-right: 10vw;
+  font-size: 14px;
+}
+
+.leva-c-kXfPOu {
+  font-size: 12px;
+  width: 50px
+}
+
+.leva-c-grzFYX {
+  width: fit-content
+}
+
+.leva-c-grzFYX {
+  margin: auto
+}
+
+.leva-c-hwSNBG {
+  width: 95%
 }
 
 @media (prefers-color-scheme: light) {
