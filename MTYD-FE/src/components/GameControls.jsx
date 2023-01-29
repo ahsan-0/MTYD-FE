@@ -1,9 +1,13 @@
+import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { GameControlsContext } from '../contexts/GameControlsContext';
 
-const GameControls = ({setControls}) => {
+const GameControls = () => {
+
+const { setControls } = useContext(GameControlsContext);
 
 const handleClick = e => {
   let click = 0;
