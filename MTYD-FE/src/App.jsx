@@ -31,7 +31,7 @@ const App = () => {
     return arrRows;
   };
   const [grid, setGrid] = useState([]);
-  const runSimulation = useCallback(() => {
+  const runSimulation = () => {
     if (!runningRef.current) {
       return;
     }
@@ -57,7 +57,7 @@ const App = () => {
       });
     });
     setTimeout(runSimulation, 300);
-  }, []);
+  };
   return (
     <>
       <Nav />
