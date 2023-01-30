@@ -44,7 +44,7 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
         }}
       >
         {grid.map((rows, i) =>
-          rows.map((col, k) => (
+          rows.map((_col, k) => (
             <div
               key={`${i}-${k}`}
               onClick={() => {
