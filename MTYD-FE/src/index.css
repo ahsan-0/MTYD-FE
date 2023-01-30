@@ -5,25 +5,70 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  background-color: #242424;
 }
 
-#root {
-  background-color: #242424;
+body {
+  background-color: #242424 !important;
+}
+
+h2 {
+  color: rgba(255, 255, 255, 0.87);
+  text-align: center;
+  text-shadow: 0px 0px 10px rgb(217, 0, 255);
+}
+
+.tutorial h2 {
+  margin: 60px auto 30px
+}
+
+main.tutorial {
+  width: fit-content;
+  margin: 0 auto
+}
+
+img.tutorial_img {
+  display: flow-root;
+  margin: 20px auto 35px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px 5px rgb(228, 141, 228);
+}
+
+img.user_img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 160px;
+  border-radius: 50%;
+}
+
+.user_title {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px
+}
+
+.tutorial_intro {
+  background-color: whitesmoke;
+  font-size: 20px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px 2px rgb(244, 63, 220);
 }
 
 .App {
   width: 100vw;
   height: 100vh;
 }
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -35,7 +80,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -44,13 +88,17 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-.patterns_h1 {
   color: white;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+}
+
+.patterns_h1, .tutorial_h1 {
   margin: 40px
+}
+
+.user_h1 {
+  margin: 70px 2px 30px;
 }
 
 button {
@@ -83,9 +131,12 @@ div.card {
 }
 
 .patterns_list {
-  display: flex;
-  flex-wrap: wrap;
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
   justify-content: center;
+  gap: 30px;
+  margin-bottom: 90px
 }
 
 .pattern_delete {
