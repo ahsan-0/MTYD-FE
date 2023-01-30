@@ -6,6 +6,7 @@ import Patterns from "./components/Patterns";
 import Tutorial from "./components/Tutorial";
 import Nav from "./components/Nav";
 import DefaultBoard from "./components/DefaultBoard";
+import UserPatterns from "./components/UserPatterns";
 const operations = [
   [0, 1],
   [0, -1],
@@ -62,6 +63,7 @@ const App = () => {
     <>
       <Nav />
       <Routes>
+        <Route path='/user' element={<UserPatterns />}/>
         <Route
           path="/automatrix"
           element={
