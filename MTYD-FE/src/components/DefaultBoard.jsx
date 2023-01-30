@@ -1,4 +1,3 @@
-import React from "react";
 import produce from "immer";
 
 function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generateEmptyGrid, runningRef, runSimulation }) {
@@ -50,7 +49,7 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
               onClick={() => {
                 const newGrid = produce(grid, (gridCopy) => {
                   gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                });
+                })
                 setGrid(newGrid);
               }}
               style={{
