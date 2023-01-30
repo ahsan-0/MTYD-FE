@@ -18,19 +18,19 @@ const operations = [
 ];
 const App = () => {
   const [running, setRunning] = useState(false);
+  const runningRef = useRef(running);
+  runningRef.current = running;
   const [rows, setRows] = useState(0);
   const [cols, setCols] = useState(0);
   const [generated, setGenerated] = useState(false);
-  const [grid, setGrid] = useState([]);
-  const runningRef = useRef(running);
-  runningRef.current = running;
-  const generateEmptyGrid = () => {
+ const generateEmptyGrid = () => {
     const arrRows = [];
     for (let i = 0; i < rows; i++) {
       arrRows.push(Array.from(Array(cols), () => {}));
     }
     return arrRows;
   };
+  const [grid, setGrid] = useState([]);
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -60,7 +60,6 @@ const App = () => {
   }, []);
   return (
     <>
-      {console.log("working?")}
       <Nav />
       <Routes>
         <Route
@@ -93,17 +92,21 @@ const App = () => {
         />
         <Route path="/how-to-play" element={<Tutorial />} />
       </Routes>
-      <DefaultBoard
-        running={running}
-        setRunning={setRunning}
-        setGrid={setGrid}
-        grid={grid}
-        cols={cols}
-        rows={rows}
-        generateEmptyGrid={generateEmptyGrid}
-        runningRef={runningRef}
-        runSimulation={runSimulation}
-      />
+      {generated ? (
+        <DefaultBoard
+          running={running}
+          setRunning={setRunning}
+          setGrid={setGrid}
+          grid={grid}
+          cols={cols}
+          rows={rows}
+          generateEmptyGrid={generateEmptyGrid}
+          runningRef={runningRef}
+          runSimulation={runSimulation}
+          setGenerated={setGenerated}
+          generated={generated}
+        />
+      ) : null}
     </>
   );
 };
