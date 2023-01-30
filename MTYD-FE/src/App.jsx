@@ -57,10 +57,9 @@ const App = () => {
       });
     });
     setTimeout(runSimulation, 300);
-  }, []);
+  });
   return (
     <>
-      {console.log("working?")}
       <Nav />
       <Routes>
         <Route
