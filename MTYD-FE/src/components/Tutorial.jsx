@@ -3,13 +3,13 @@ function Tutorial() {
     <div className="tutorial">
       <h1>Tutorial</h1>
       <h4>Loneliness: A cell with less than 2 adjoining neighbors dies.</h4>
-      <img src="../../public/ruleOne.png" alt="rule one" />
+      <img src="/ruleOne.png" alt="rule one" />
       <h4>OverCrowding: A cell with more than three adjoining cells dies.</h4>
-      <img src="../../public/ruleTwo.png" alt="rule two" />
+      <img src="/ruleTwo.png" alt="rule two" />
       <h4>Reproduction: An empty cell with more than three adjoining cells comes alive.</h4>
-      <img src="../../public/ruleThree.png" alt="rule three" />
+      <img src="/ruleThree.png" alt="rule three" />
       <h4>Stasis: A cell with exactly two adjoining cells remains the same</h4>
-      <img src="../../public/ruleFour.png" alt="rule four" />
+      <img src="/ruleFour.png" alt="rule four" />
     </div>
   );
 }
