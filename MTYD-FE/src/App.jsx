@@ -60,6 +60,7 @@ const App = () => {
   }, []);
   return (
     <>
+      {console.log("working?")}
       <Nav />
       <Routes>
         <Route
