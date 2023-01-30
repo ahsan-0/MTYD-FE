@@ -57,6 +57,7 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
                 width: 20,
                 height: 20,
                 backgroundColor: grid[i][k] ? "pink" : undefined,
+                boxShadow: "0px 5px 5px",
                 border: "solid 1px black",
               }}
             />
