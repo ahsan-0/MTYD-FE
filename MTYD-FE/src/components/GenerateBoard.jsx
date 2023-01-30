@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generateEmptyGrid }) {
+function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generated, generateEmptyGrid, DefaultBoard }) {
   const [rowInput, setRowInput] = useState(0);
   const [colInput, setColInput] = useState(0);
   const handleRowChange = (event) => {
@@ -18,7 +18,7 @@ function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generateEmptyG
           setRows(rowInput);
           setCols(colInput);
           setGrid(generateEmptyGrid());
-          setGenerated(true)
+          setGenerated(true);
         }}
       >
         Generate Board
