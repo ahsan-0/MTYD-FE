@@ -23,15 +23,15 @@ const App = () => {
   const [rows, setRows] = useState(0);
   const [cols, setCols] = useState(0);
   const [generated, setGenerated] = useState(false);
- const generateEmptyGrid = () => {
+  const generateEmptyGrid = () => {
     const arrRows = [];
     for (let i = 0; i < rows; i++) {
-      arrRows.push(Array.from(Array(cols), () => {}));
+      arrRows.push(Array.from(Array(cols), () => 0));
     }
     return arrRows;
   };
   const [grid, setGrid] = useState([]);
-  const runSimulation = () => {
+  const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
     }
@@ -57,7 +57,7 @@ const App = () => {
       });
     });
     setTimeout(runSimulation, 300);
-  };
+  }, [running]);
   return (
     <>
       <Nav />
@@ -72,8 +72,24 @@ const App = () => {
               generated={generated}
               generateEmptyGrid={generateEmptyGrid}
               setGrid={setGrid}
+              DefaultBoard={<DefaultBoard />}
             />
           }
+          // element={ generated ?
+          //   <DefaultBoard
+          //     running={running}
+          //     setRunning={setRunning}
+          //     setGrid={setGrid}
+          //     grid={grid}
+          //     cols={cols}
+          //     rows={rows}
+          //     generateEmptyGrid={generateEmptyGrid}
+          //     runningRef={runningRef}
+          //     runSimulation={runSimulation}
+          //     setGenerated={setGenerated}
+          //     generated={generated}
+          //   /> :null
+          // }
         />
         <Route
           path="/patterns"
@@ -92,7 +108,7 @@ const App = () => {
         />
         <Route path="/how-to-play" element={<Tutorial />} />
       </Routes>
-      {generated ? (
+      {/* {generated ? (
         <DefaultBoard
           running={running}
           setRunning={setRunning}
@@ -106,7 +122,7 @@ const App = () => {
           setGenerated={setGenerated}
           generated={generated}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };
