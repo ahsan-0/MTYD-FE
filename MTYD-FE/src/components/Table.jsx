@@ -2,16 +2,21 @@ import img from "../assets/green.png";
 import * as THREE from "three";
 import { Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import retro from '../assets/retro.json';
+import { useContext } from "react";
+import { GameControlsContext } from "../contexts/GameControlsContext";
 
 function Table({boardConfiguration}) {
   const texture = new THREE.TextureLoader().load(img);
   const boxLength = boardConfiguration;
   
+  const {controls} = useContext(GameControlsContext);
+
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
     return <meshMatcapMaterial matcap={matcap} />
   };
   
+  if (controls.button !== "enablePhysics") {
   return (
     <><mesh position={[boxLength / 2, -1, boxLength / 2]}>
       <meshMatcapMaterial
@@ -82,6 +87,7 @@ function Table({boardConfiguration}) {
       </Float></mesh>
     </>
   );
+}
 }
 export default Table;
 
