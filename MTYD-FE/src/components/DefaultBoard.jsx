@@ -1,8 +1,8 @@
 import produce from "immer";
 
-function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generateEmptyGrid, runningRef, runSimulation }) {
+function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generateEmptyGrid, runningRef, runSimulation, generated }) {
   return (
-    <div>
+    <div className="board">
       <div className="button-container">
         <button
           className={running ? "btn-stop" : "btn-start"}
@@ -14,6 +14,7 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
             }
           }}
         >
+          {generated ? null : "start"}
           {running ? "stop" : "start"}
         </button>
         <button
@@ -45,19 +46,16 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
         {grid.map((rows, i) =>
           rows.map((_col, k) => (
             <div
+              className="cells"
               key={`${i}-${k}`}
               onClick={() => {
                 const newGrid = produce(grid, (gridCopy) => {
                   gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                })
+                });
                 setGrid(newGrid);
               }}
               style={{
-                width: 20,
-                height: 20,
                 backgroundColor: grid[i][k] ? "pink" : undefined,
-                boxShadow: "0px 5px 5px",
-                border: "solid 1px black",
               }}
             />
           ))
