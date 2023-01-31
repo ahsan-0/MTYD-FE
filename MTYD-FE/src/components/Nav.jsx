@@ -6,6 +6,7 @@ function Nav() {
       <Link to="/patterns">Patterns Library</Link>
       <Link to="/automatrix">Play Game</Link>
       <Link to="/how-to-play">Tutorial & Rules</Link>
+      <Link to="/account" >Account</Link>
     </nav>
   );
 }

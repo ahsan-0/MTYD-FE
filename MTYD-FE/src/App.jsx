@@ -6,6 +6,11 @@ import Patterns from "./components/Patterns";
 import Tutorial from "./components/Tutorial";
 import Nav from "./components/Nav";
 import DefaultBoard from "./components/DefaultBoard";
+import Signup from "./components/authComponents/signup";
+import { AuthProvider } from "./components/authComponents/AuthProvider";
+import Login from "./components/authComponents/Login";
+import Showuser from "./components/ShowUser";
+import { Logout } from "./components/authComponents/Logout";
 const operations = [
   [0, 1],
   [0, -1],
@@ -60,8 +65,13 @@ const App = () => {
   }, []);
   return (
     <>
+    <AuthProvider>
+      <Showuser/>
       <Nav />
+      <Logout />
       <Routes>
+        <Route path="/account" element={<Signup />} />
+        <Route path="/login" element = {<Login />}/>
         <Route
           path="/automatrix"
           element={
@@ -103,6 +113,7 @@ const App = () => {
         runningRef={runningRef}
         runSimulation={runSimulation}
       />
+      </AuthProvider>
     </>
   );
 };
