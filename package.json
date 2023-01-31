@@ -2,7 +2,9 @@
   "dependencies": {
     "@react-three/drei": "^9.56.1",
     "@react-three/fiber": "^8.10.1",
+    "@react-three/postprocessing": "^2.7.0",
     "@types/three": "^0.148.1",
-    "three": "^0.149.0"
+    "three": "^0.149.0",
+    "vite": "^4.0.4"
   }
 }
