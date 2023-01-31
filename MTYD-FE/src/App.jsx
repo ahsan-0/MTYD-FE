@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import produce from "immer";
 import GenerateBoard from "./components/GenerateBoard";
 import Patterns from "./components/Patterns";
@@ -18,9 +18,6 @@ const operations = [
   [-1, 0],
 ];
 const App = () => {
-  const [running, setRunning] = useState(false);
-  const runningRef = useRef(running);
-  runningRef.current = running;
   const [rows, setRows] = useState(0);
   const [cols, setCols] = useState(0);
   const [generated, setGenerated] = useState(false);
@@ -32,6 +29,9 @@ const App = () => {
     return arrRows;
   };
   const [grid, setGrid] = useState([]);
+  const [running, setRunning] = useState(false);
+  const runningRef = useRef(running);
+  runningRef.current = running;
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -58,40 +58,18 @@ const App = () => {
       });
     });
     setTimeout(runSimulation, 300);
-  }, [running]);
+  }, [generated]);
+  const url = useLocation().pathname;
   return (
     <>
       <Nav />
       <Routes>
-        <Route path='/user' element={<UserPatterns />}/>
+        <Route path="/user" element={<UserPatterns />} />
         <Route
           path="/automatrix"
           element={
-            <GenerateBoard
-              setCols={setCols}
-              setRows={setRows}
-              setGenerated={setGenerated}
-              generated={generated}
-              generateEmptyGrid={generateEmptyGrid}
-              setGrid={setGrid}
-              DefaultBoard={<DefaultBoard />}
-            />
+            <GenerateBoard setCols={setCols} setRows={setRows} setGenerated={setGenerated} generateEmptyGrid={generateEmptyGrid} setGrid={setGrid} />
           }
-          // element={ generated ?
-          //   <DefaultBoard
-          //     running={running}
-          //     setRunning={setRunning}
-          //     setGrid={setGrid}
-          //     grid={grid}
-          //     cols={cols}
-          //     rows={rows}
-          //     generateEmptyGrid={generateEmptyGrid}
-          //     runningRef={runningRef}
-          //     runSimulation={runSimulation}
-          //     setGenerated={setGenerated}
-          //     generated={generated}
-          //   /> :null
-          // }
         />
         <Route
           path="/patterns"
@@ -110,7 +88,7 @@ const App = () => {
         />
         <Route path="/how-to-play" element={<Tutorial />} />
       </Routes>
-      {/* {generated ? (
+      {generated && url === "/automatrix" ? (
         <DefaultBoard
           running={running}
           setRunning={setRunning}
@@ -121,10 +99,9 @@ const App = () => {
           generateEmptyGrid={generateEmptyGrid}
           runningRef={runningRef}
           runSimulation={runSimulation}
-          setGenerated={setGenerated}
           generated={generated}
         />
-      ) : null} */}
+      ) : null}
     </>
   );
 };
