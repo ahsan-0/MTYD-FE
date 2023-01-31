@@ -28,7 +28,7 @@ function PatternCard ({username, pattern_name, avatar_url, created_at, pattern_b
         <Card.Text>
           Added on {created_at.slice(0, 10)}
         </Card.Text>
-        <div className="grid" 
+        <div className="patternsGrid" 
         style={{
           'display': "grid", 
           'gridTemplateColumns': `repeat(${pattern_body.split(" ")[0].length}, 25px)`,
