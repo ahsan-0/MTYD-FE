@@ -51,7 +51,7 @@ const ResetPassword = () => {
       </form>
       <div className="signup-bar">
         <p>Dont have account.. </p>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/account">Sign Up</Link>
       </div>
     </div>
   );
