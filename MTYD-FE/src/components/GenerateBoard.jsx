@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generated, generateEmptyGrid, DefaultBoard }) {
+function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generateEmptyGrid }) {
   const [rowInput, setRowInput] = useState(0);
   const [colInput, setColInput] = useState(0);
   const handleRowChange = (event) => {
@@ -9,16 +9,21 @@ function GenerateBoard({ setRows, setCols, setGenerated, setGrid, generated, gen
   const handleColChange = (event) => {
     setColInput(parseInt(event.target.value));
   };
+  useEffect(() => {
+    setRows(rowInput);
+    setCols(colInput);
+    setGenerated(false);
+  }, [rowInput, colInput]);
   return (
-    <div>
+    <div className="generate">
       <input type="number" placeholder="rows" onChange={handleRowChange}></input>
       <input type="number" placeholder="columns" onChange={handleColChange}></input>
       <button
         onClick={() => {
           setRows(rowInput);
           setCols(colInput);
-          setGrid(generateEmptyGrid());
           setGenerated(true);
+          setGrid(generateEmptyGrid());
         }}
       >
         Generate Board
