@@ -11,44 +11,47 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function handelSubmit(e){
-    e.preventDefault()
+  function handelSubmit(e) {
+    e.preventDefault();
     login(auth, email, password)
-    .then(()=>{
-      navigate('/')
-    })
-    .catch((err)=>{
-      setError(err.message)
-    })
-    
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }
 
   return (
-    <div>
-      <form onSubmit={handelSubmit}>
-        {error && <p>{error}</p>}
-        <label htmlFor="emailInput">Email</label>
-        <input id="emailInput"
-        type='email'
-        value={email}
-        onChange={(e)=>{
-          setEmail(e.target.value)
-        }}
-        ></input>
-        <label id='passwordInput'>Password</label>#
-        <input
-        id='passwordInput'
-        type='password'
-        value={password}
-        onChange={(e)=>{
-          setPassword(e.target.value)
-        }}
-        >
-        </input>
-        <button type="submit">Login</button>
-      </form>
-    </div>
-    
+    <>
+      <div>
+        <form onSubmit={handelSubmit}>
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <label htmlFor="emailInput">Email</label>
+          <input
+            id="emailInput"
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
+          <label id="passwordInput">Password</label>#
+          <input
+            id="passwordInput"
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
+      <div>
+        Need an account? <Link to="/signup">Sign Up</Link>
+      </div>
+    </>
   );
 }
 

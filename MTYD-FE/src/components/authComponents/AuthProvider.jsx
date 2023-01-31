@@ -5,7 +5,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateEmail,
+  updatePassword,
 } from "firebase/auth";
 
 export const AuthContext = React.createContext();
@@ -13,18 +15,16 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-
-
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  function signup(auth,email, password) {
-    return createUserWithEmailAndPassword(auth,email, password);
+  function signup(auth, email, password) {
+    return createUserWithEmailAndPassword(auth, email, password);
   }
 
-  function login(auth,email, password) {
-    return signInWithEmailAndPassword(auth,email, password);
+  function login(auth, email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
   }
 
   function logout() {
@@ -32,19 +32,19 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email) {
-    return sendPasswordResetEmail(email);
+    return sendPasswordResetEmail(auth, email);
   }
 
-  function updateEmail(email) {
-    return currentUser.updateEmail(email);
+  function updateUserEmail(email) {
+    return updateEmail(auth.currentUser, email);
   }
 
-  function updatePassword(password) {
-    return currentUser.updatePassword(password);
+  function updateUserPassword(password) {
+    return updatePassword(auth.currentUser, password);
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth,(user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
     });
@@ -57,8 +57,8 @@ export function AuthProvider({ children }) {
     signup,
     logout,
     resetPassword,
-    updateEmail,
-    updatePassword,
+    updateUserEmail,
+    updateUserPassword,
   };
 
   return (

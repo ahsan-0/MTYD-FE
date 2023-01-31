@@ -11,6 +11,8 @@ import { AuthProvider } from "./components/authComponents/AuthProvider";
 import Login from "./components/authComponents/Login";
 import Showuser from "./components/ShowUser";
 import { Logout } from "./components/authComponents/Logout";
+import UpdateProfile from "./components/authComponents/Updateprofile";
+import ResetPassword from "./components/authComponents/ResetPassword";
 const operations = [
   [0, 1],
   [0, -1],
@@ -65,54 +67,56 @@ const App = () => {
   }, []);
   return (
     <>
-    <AuthProvider>
-      <Showuser/>
-      <Nav />
-      <Logout />
-      <Routes>
-        <Route path="/account" element={<Signup />} />
-        <Route path="/login" element = {<Login />}/>
-        <Route
-          path="/automatrix"
-          element={
-            <GenerateBoard
-              setCols={setCols}
-              setRows={setRows}
-              setGenerated={setGenerated}
-              generated={generated}
-              generateEmptyGrid={generateEmptyGrid}
-              setGrid={setGrid}
-            />
-          }
+      <AuthProvider>
+        <Showuser />
+        <Nav />
+        <Logout />
+        <Routes>
+          <Route path="/account" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/updateprofile" element={<UpdateProfile />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route
+            path="/automatrix"
+            element={
+              <GenerateBoard
+                setCols={setCols}
+                setRows={setRows}
+                setGenerated={setGenerated}
+                generated={generated}
+                generateEmptyGrid={generateEmptyGrid}
+                setGrid={setGrid}
+              />
+            }
+          />
+          <Route
+            path="/patterns"
+            element={
+              <Patterns
+                running={running}
+                setRunning={setRunning}
+                setGrid={setGrid}
+                grid={grid}
+                cols={cols}
+                rows={rows}
+                runningRef={runningRef}
+                runSimulation={runSimulation}
+              />
+            }
+          />
+          <Route path="/how-to-play" element={<Tutorial />} />
+        </Routes>
+        <DefaultBoard
+          running={running}
+          setRunning={setRunning}
+          setGrid={setGrid}
+          grid={grid}
+          cols={cols}
+          rows={rows}
+          generateEmptyGrid={generateEmptyGrid}
+          runningRef={runningRef}
+          runSimulation={runSimulation}
         />
-        <Route
-          path="/patterns"
-          element={
-            <Patterns
-              running={running}
-              setRunning={setRunning}
-              setGrid={setGrid}
-              grid={grid}
-              cols={cols}
-              rows={rows}
-              runningRef={runningRef}
-              runSimulation={runSimulation}
-            />
-          }
-        />
-        <Route path="/how-to-play" element={<Tutorial />} />
-      </Routes>
-      <DefaultBoard
-        running={running}
-        setRunning={setRunning}
-        setGrid={setGrid}
-        grid={grid}
-        cols={cols}
-        rows={rows}
-        generateEmptyGrid={generateEmptyGrid}
-        runningRef={runningRef}
-        runSimulation={runSimulation}
-      />
       </AuthProvider>
     </>
   );
