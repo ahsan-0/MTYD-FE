@@ -1,3 +1,16 @@
+import { Link } from "react-router-dom";
+
+function Nav() {
+  return (
+    <nav>
+      <Link to="/patterns">Patterns Library</Link>
+      <Link to="/automatrix">Play Game</Link>
+      <Link to="/how-to-play">Tutorial & Rules</Link>
+    </nav>
+  );
+}
+
+export default Nav;
 import { Link, useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';

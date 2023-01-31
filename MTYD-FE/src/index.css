@@ -1,18 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color-scheme: light dark;
+
+
   color: rgba(255, 255, 255, 0.87);
  /* background-color: rgb(127, 92, 217);*/
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  background-color: #242424;
+}
+
+.cells {
+  padding: 10px;
+  margin: 2px;
+  border: solid 2px white;
+}
+
+body {
+  background-color: #242424 !important;
+}
+
+h2 {
+  color: rgba(255, 255, 255, 0.87);
+  text-align: center;
+  text-shadow: 0px 0px 10px rgb(217, 0, 255);
+}
+
+.tutorial h2 {
+  margin: 60px auto 30px;
+}
+
+main.tutorial {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+img.tutorial_img {
+  display: flow-root;
+  margin: 20px auto 35px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px 5px rgb(228, 141, 228);
+}
+
+img.user_img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 160px;
+  border-radius: 50%;
+}
+
+.user_title {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 30px;
+}
+
+.tutorial_intro {
+  background-color: whitesmoke;
+  font-size: 20px;
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px 2px rgb(244, 63, 220);
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+
   
 }
 
@@ -50,7 +120,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -59,6 +128,18 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: white;
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+}
+
+.patterns_h1,
+.tutorial_h1 {
+  margin: 40px;
+}
+
+.user_h1 {
+  margin: 70px 2px 30px;
 }
 
 button {
@@ -80,6 +161,33 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.patternsGrid {
+  gap: 1px;
+  width: fit-content;
+  margin: 10px auto 20px;
+}
+
+div.card {
+  margin: 20px 10px;
+}
+
+.patterns_list {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 90px;
+}
+
+.pattern_delete {
+  align-items: center;
+}
+
+.card-img-top {
+  object-fit: cover;
+  max-height: 200px;
+=======
 #nav {
  width: 100vw;
  position: absolute;
@@ -117,10 +225,7 @@ button#physics {
 }
 
 .leva-c-grzFYX {
-  width: fit-content
-}
-
-.leva-c-grzFYX {
+  width: fit-content 
   margin: auto
 }
 
