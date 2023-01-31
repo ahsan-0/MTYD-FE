@@ -1,5 +1,9 @@
 import produce from "immer";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { nextBoard, flipRunning, flipWrap, increaseSpeed, decreaseSpeed } from "../features/board/boardSlice";
+
+import { v4 as uuidv4 } from 'uuid';
 function BoardConfig({
   running,
   setRunning,
@@ -16,6 +20,7 @@ function BoardConfig({
   setGenerated,
 }) {
   const [rowInput, setRowInput] = useState(0);
+  const dispatch = useDispatch();
   const [colInput, setColInput] = useState(0);
   const handleRowChange = (event) => {
     setRowInput(parseInt(event.target.value));
@@ -23,14 +28,29 @@ function BoardConfig({
   const handleColChange = (event) => {
     setColInput(parseInt(event.target.value));
   };
+
+  const board = useSelector(state => state.board);
+
   useEffect(() => {
     setRows(rowInput);
     setCols(colInput);
     setGenerated(false);
   }, [rowInput, colInput]);
-  return (
-    <>
-      <div className="generate">
+  
+  
+  const boardConfig = (gameGrid) => {
+    const cellCoords = [];
+    for (let i = 0; i < gameGrid.length; i++) {
+      for (let j = 0; j < gameGrid[i].length; j++) {
+        cellCoords.push({
+          coords: [i, 0, j],
+          alive: board.configuration[i][j],
+        });
+      }
+    }
+  
+    return (
+    <><div className="generate">
         <input type="number" placeholder="rows" onChange={handleRowChange}></input>
         <input type="number" placeholder="columns" onChange={handleColChange}></input>
         <button
@@ -38,44 +58,24 @@ function BoardConfig({
             setRows(rowInput);
             setCols(colInput);
             setGenerated(true);
-            setGrid(generateEmptyGrid());
+            setGrid(board);
           }}
         >
           Generate Board
         </button>
       </div>
-      {generated ? (
         <div className="board">
           <div className="button-container">
             <button
-              className={running ? "btn-stop" : "btn-start"}
+              className={ board.running ? "btn-stop" : "btn-start"}
               onClick={() => {
-                setRunning(!running);
-                if (!running) {
-                  runningRef.current = true;
-                  runSimulation();
-                }
+                dispatch(flipRunning());
+                if (!board.running) {
+                  dispatch(flipRunning())
+                          }
               }}
             >
-              {running ? "stop" : "start"}
-            </button>
-            <button
-              onClick={() => {
-                const arrRows = [];
-                for (let i = 0; i < rows; i++) {
-                  arrRows.push(Array.from(Array(cols), () => (Math.random() > 0.7 ? 1 : 0)));
-                }
-                setGrid(arrRows);
-              }}
-            >
-              random
-            </button>
-            <button
-              onClick={() => {
-                setGrid(generateEmptyGrid());
-              }}
-            >
-              clear
+              {board.running ? "stop" : "start"}
             </button>
           </div>
           <div
@@ -85,28 +85,14 @@ function BoardConfig({
               gridTemplateColumns: `repeat(${cols}, 25px)`,
             }}
           >
-            {grid.map((rows, i) =>
-              rows.map((_col, k) => (
-                <div
-                  className="cells"
-                  key={`${i}-${k}`}
-                  onClick={() => {
-                    const newGrid = produce(grid, (gridCopy) => {
-                      gridCopy[i][k] = grid[i][k] ? 0 : 1;
-                    });
-                    setGrid(newGrid);
-                  }}
-                  style={{
-                    backgroundColor: grid[i][k] ? "pink" : undefined,
-                  }}
-                />
-              ))
-            )}
-          </div>
-        </div>
-      ) : null}
-    </>
-  );
+    {boardConfig(board.configuration).map((cell) => {
+    return (
+      <div
+        key={uuidv4()}
+        position={cell.coords}
+        living={cell.alive}
+        interact={enableInteract}></div>)})}</div>
+        </div></>);
 }
-
+}
 export default BoardConfig;
