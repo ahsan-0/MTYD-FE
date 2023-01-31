@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 
-function Nav() {
+/*function Nav() {
   return (
     <nav>
       <Link to="/patterns">Patterns Library</Link>
@@ -8,9 +7,8 @@ function Nav() {
       <Link to="/how-to-play">Tutorial & Rules</Link>
     </nav>
   );
-}
+}*/
 
-export default Nav;
 import { Link, useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
