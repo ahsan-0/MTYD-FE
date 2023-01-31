@@ -6,7 +6,7 @@ export const boardSlice = createSlice({
     configuration: [[0,0,0,0,0],[0,0,0,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0]],
     running: false,
     wrap: true,
-    interval: 1000,
+    interval: 1000
   },
   reducers: {
     nextBoard: state => {
