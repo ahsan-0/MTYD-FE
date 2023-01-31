@@ -8,10 +8,11 @@ import UserPatterns from "./components/UserPatterns";
 import Board from "./components/Board";
 import Patterns from "./components/Patterns";
 import Tutorial from "./components/Tutorial";
+
 function App() {
   return (
     <div className="App">
-      <Navigation/>
+    
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/3dgame" element={<ThreeDimensionalGame/>}/>
@@ -24,3 +25,6 @@ function App() {
   );
 };
 export default App;
+
+
+//  <Navigation/>
