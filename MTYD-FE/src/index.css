@@ -93,11 +93,11 @@ button:focus-visible {
   background-color: rgb(234, 68, 159);
 }
 
-button.btn-secondary, #bg-nested-dropdown {
+button.btn-secondary, #bg-nested-dropdown, button.dropdown-toggle {
   font-size: 18px;
 }
 
-button#clear {
+button#physics {
   background-color: rgb(255, 115, 0);
 }
 
