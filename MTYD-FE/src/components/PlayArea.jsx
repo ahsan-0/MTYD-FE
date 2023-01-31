@@ -2,7 +2,7 @@ import Cell from "./Cell";
 import { useState, useRef, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { GameControlsContext } from "../contexts/GameControlsContext";
-import { Physics, useBox } from "@react-three/cannon";
+import PhysicsScene from "./PhysicsScene";
 
 const boardString2 = "000110000111011 101110110100111 100011000101111 110011110011111 001001110000111 011101011101111 011011111010111 01100111001011 111011111110111 001111011101111 01110100111111 011010000110111 011111010001011 111011011110111 001010011101111";
 const boardString1 = "111111111111111 ".repeat(15);
@@ -16,6 +16,7 @@ function PlayArea({setBoardConfiguration}) {
   const [interval, setInterval] = useState(500);
   const [edgeCondition, setEdgeCondition] = useState('wrap');
   const [enableInteract, setEnableInteract] = useState(true);
+  const [enablePhysics, setEnablePhysics] = useState(false);
 
   const { controls } = useContext(GameControlsContext);
 
@@ -51,6 +52,12 @@ function PlayArea({setBoardConfiguration}) {
       setEnableInteract(true);
     } else if (button === "disableClick") {
       setEnableInteract(false);
+    } else if (button === "enablePhysics") {
+      setEnableInteract(false);
+      setEnablePhysics(true);
+    } else if (button === "disablePhysics") {
+      setEnableInteract(true);
+      setEnablePhysics(false);
     }
   }, [controls]);
 
@@ -102,10 +109,14 @@ function PlayArea({setBoardConfiguration}) {
     setTimeout(runGame, interval);
   }, [gameGrid]);
 
-  return (
-    boardConfig(gameGrid).map(cell => {
-      return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={enableInteract}/>
-     })
-  );
+  if (enablePhysics) {
+    return <PhysicsScene></PhysicsScene>
+  } else {
+    return (
+      boardConfig(gameGrid).map(cell => {
+        return <Cell key={uuidv4()} position={cell.coords} living={cell.alive} interact={enableInteract} physics={enablePhysics}/>
+       })
+    );
+  }
 }
 export default PlayArea;
