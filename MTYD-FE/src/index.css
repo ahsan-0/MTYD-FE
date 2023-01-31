@@ -83,13 +83,7 @@ img.user_img {
 }
 
 
-  
-}
-
-html,
-body,
-#root,
-.anim {
+html, body, #root, .anim {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -187,7 +181,8 @@ div.card {
 .card-img-top {
   object-fit: cover;
   max-height: 200px;
-=======
+}
+
 #nav {
  width: 100vw;
  position: absolute;
@@ -225,7 +220,7 @@ button#physics {
 }
 
 .leva-c-grzFYX {
-  width: fit-content 
+  width: fit-content;
   margin: auto
 }
 
