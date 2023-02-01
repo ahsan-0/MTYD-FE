@@ -26,7 +26,7 @@ function Signup() {
       })
       .catch((err) => {
         setError("Failed to create an account");
-        console.log(err);
+        console.log("signing up error",err);
       });
 
     setLoading(false);

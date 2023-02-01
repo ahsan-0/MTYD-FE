@@ -9,7 +9,6 @@ export const Logout = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const { currentUser } = useAuth();
-  console.log(currentUser, "currentuser");
   function handelLogOut() {
     logout()
       .then(() => {
