@@ -12,12 +12,13 @@ import Tutorial from "./components/Tutorial";
 function App() {
   return (
     <div className="App">
-    
+    <Navigation/>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/tutorial" element={<Tutorial/>}/>
         <Route path="/3dgame" element={<ThreeDimensionalGame/>}/>
+        <Route path="/2dgame" element={<Board />} />
         <Route path="/user" element={<UserPatterns />} />
-        <Route path="/automatrix" element={<Board />} />
         <Route path="/patterns" element={<Patterns />} />
         <Route path="/how-to-play" element={<Tutorial />} />
       </Routes>
@@ -25,6 +26,3 @@ function App() {
   );
 };
 export default App;
-
-
-//  <Navigation/>
