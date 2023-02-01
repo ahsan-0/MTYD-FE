@@ -1,14 +1,3 @@
-
-/*function Nav() {
-  return (
-    <nav>
-      <Link to="/patterns">Patterns Library</Link>
-      <Link to="/automatrix">Play Game</Link>
-      <Link to="/how-to-play">Tutorial & Rules</Link>
-    </nav>
-  );
-}*/
-
 import { Link, useNavigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -30,8 +19,6 @@ const navigate = useNavigate();
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link onClick={() => navigate("3dgame")}>3D game</Nav.Link>
-            <Nav.Link onClick={() => navigate("2dgame")}>2D game</Nav.Link>
             <NavDropdown title="Patterns" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Pattern #1</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -43,6 +30,11 @@ const navigate = useNavigate();
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            <Nav.Link onClick={() => navigate("tutorial")}>How to play</Nav.Link>
+            <Nav.Link onClick={() => navigate("3dgame")}>3D game</Nav.Link>
+            <Nav.Link onClick={() => navigate("2dgame")}>2D game</Nav.Link>
+            <Nav.Link onClick={() => navigate("patterns")}>All patterns</Nav.Link>
+            <Nav.Link onClick={() => navigate("user")}>My patterns</Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
