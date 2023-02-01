@@ -1,11 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { GameControlsContext } from '../contexts/GameControlsContext';
+import { useDispatch, useSelector } from "react-redux";
+
+import React from 'react';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import { postPattern } from '../api';
 
 const GameControls = () => {
+const [patternName, setPatternName] = useState('');
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
 const { controls, setControls } = useContext(GameControlsContext);
 
@@ -20,29 +30,64 @@ const handleClick = e => {
   }
 };
 
-const condition = controls.button === "enablePhysics";
+const handleSubmit = e => {
+  setShow(false);
+  postPattern()
+}
 
 return (
 <section className="game-controls">
 <ButtonGroup onClick={handleClick} aria-label="Basic example">
-  <Button disabled={condition} id="start" variant="secondary">Start</Button>
-  <Button disabled={condition} id="stop" variant="secondary">Stop</Button>
-  <Button disabled={condition} id="reset" variant="secondary">Reset</Button>
-  <Button disabled={condition} id="faster" variant="secondary">🡱 faster</Button>
-  <Button disabled={condition} id="slower" variant="secondary">🡳 slower</Button>
-  <DropdownButton disabled={condition} as={ButtonGroup} title="Edge type" className="bg-nested-dropdown">
+  <Button id="start" variant="secondary">Start</Button>
+  <Button id="stop" variant="secondary">Stop</Button>
+  <Button id="reset" variant="secondary">Reset</Button>
+  <Button id="faster" variant="secondary">🡱 faster</Button>
+  <Button id="slower" variant="secondary">🡳 slower</Button>
+  <DropdownButton as={ButtonGroup} title="Edge type" className="bg-nested-dropdown">
    <Dropdown.Item id="edge" eventKey="1">Hard edge</Dropdown.Item>
    <Dropdown.Item id="wrap" eventKey="2">Wrap around</Dropdown.Item>
  </DropdownButton>
- <DropdownButton disabled={condition} as={ButtonGroup} title="Click to interact" className="bg-nested-dropdown">
+ <DropdownButton as={ButtonGroup} title="Click to interact" className="bg-nested-dropdown">
    <Dropdown.Item id="enableClick" eventKey="1">Enable</Dropdown.Item>
    <Dropdown.Item id="disableClick" eventKey="2">Disable</Dropdown.Item>
  </DropdownButton>
- <DropdownButton as={ButtonGroup} id="physics" title="Physics" className="bg-nested-dropdown">
-   <Dropdown.Item id="enablePhysics" eventKey="1">Enable</Dropdown.Item>
-   <Dropdown.Item id="disablePhysics" eventKey="2">Disable</Dropdown.Item>
- </DropdownButton>
+ <Button variant="primary" id="save" onClick={handleShow}>
+        Save pattern
+      </Button>
 </ButtonGroup>
+
+<Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Save pattern</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>What would you like to name this pattern?</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter pattern name."
+                autoFocus
+                onChange={e => setPatternName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Save pattern
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
 </section>)
 };
 
