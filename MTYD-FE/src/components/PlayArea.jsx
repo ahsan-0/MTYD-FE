@@ -42,20 +42,18 @@ function PlayArea({setBoardConfiguration}) {
       dispatch(flipRunning());
     } else if (button === "faster" && board.interval > 120) {
       setInterval((prev) => prev - 100);
-      dispatch(decreaseSpeed());
+      dispatch(increaseSpeed());
     } else if (button === "slower") {
       setInterval((prev) => prev + 100);
-      dispatch(increaseSpeed());
+      dispatch(decreaseSpeed());
     } else if (button === "reset") {
       setGameIsRunning(false);
       dispatch(flipRunning());
       gameRef.current = false;
       setGameGrid(boardArray);
     } else if (button === "edge") {
-      setEdgeCondition("edge");
       dispatch(flipWrap());
     } else if (button === "wrap") {
-      setEdgeCondition("wrap");
       dispatch(flipWrap());
     } else if (button === "enableClick") {
       setEnableInteract(true);
