@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 const stringToArray = str => str.split(" ").map(m => m.split("").map(m => +m));
 
 function PatternCard ({username, pattern_name, avatar_url, created_at, pattern_body}) {
-    return  <Card style={{ width: '21rem' }}>
+    return  <Card>
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
