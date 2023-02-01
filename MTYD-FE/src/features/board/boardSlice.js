@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const boardSlice = createSlice({
   name: 'board',
   initialState: {
-    configuration: [[1,1,1,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+    configuration: "000001111100000 ".repeat(15).slice(0, -1).split(" ").map(m => m.split("").map(m => +m)),
     running: false,
     wrap: true,
     interval: 2000 
