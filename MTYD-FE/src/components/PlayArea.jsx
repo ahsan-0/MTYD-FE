@@ -1,50 +1,44 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import { v4 as uuidv4 } from 'uuid';
-//import PhysicsScene from "./PhysicsScene";
+import { v4 as uuidv4 } from "uuid";
 import Cell from "./Cell";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import { Physics, useBox } from "@react-three/cannon";
 import { useDispatch, useSelector } from "react-redux";
-import { nextBoard, flipRunning, flipWrap, increaseSpeed, decreaseSpeed } from "../features/board/boardSlice";
+import {
+  nextBoard,
+  flipRunning,
+  flipWrap,
+  increaseSpeed,
+  decreaseSpeed,
+  increaseBoard,
+  decreaseBoard,
+} from "../features/board/boardSlice";
 import React from "react";
 
-
-function PlayArea({setBoardConfiguration}) {
-
+function PlayArea({ setBoardConfiguration }) {
   const board = useSelector((state) => state.board);
   const dispatch = useDispatch();
   const setGameGrid = () => dispatch(nextBoard());
   const [enableInteract, setEnableInteract] = useState(true);
   const { controls } = useContext(GameControlsContext);
 
-//  const [gameIsRunning, setGameIsRunning] = useState(false);
- // const [gameGrid, setGameGrid] = useState(() => boardArray);
- // const [interval, setInterval] = useState(500);
-//  const [edgeCondition, setEdgeCondition] = useState('wrap');
-//  const [enableInteract, setEnableInteract] = useState(true);
-
-// const { controls } = useContext(GameControlsContext);
-// const gameRef = useRef(gameIsRunning);
-// gameRef.current = gameIsRunning;
-
   const [enablePhysics, setEnablePhysics] = useState(false);
-  
+
   useEffect(() => {
     setBoardConfiguration(board.configuration.length - 1);
   }, []);
-  
+
   useEffect(() => {
     const { button } = controls;
     if (button === "start") {
       dispatch(flipRunning());
       dispatch(nextBoard());
     } else if (button === "stop") {
-      dispatch(flipRunning());
+      dispatch(increaseBoard());
+      //dispatch(flipRunning());
     } else if (button === "faster" && board.interval > 120) {
-      setInterval((prev) => prev - 100);
-      dispatch(increaseSpeed());
+      dispatch(decreaseBoard());
     } else if (button === "slower") {
-      setInterval((prev) => prev + 100);
       dispatch(decreaseSpeed());
     } else if (button === "reset") {
       setGameIsRunning(false);
@@ -76,10 +70,26 @@ function PlayArea({setBoardConfiguration}) {
   };
   useEffect(() => {
     if (board.running) {
-      setTimeout( () => dispatch(nextBoard()), board.interval)
+      setTimeout(() => dispatch(nextBoard()), board.interval);
     }
-    
-  },[board.configuration]);
+  }, [board.configuration]);
+  const newStuff = board.configuration.map((row) => {
+    row.map((cell) => {
+      return (
+        <Cell
+          key={uuidv4()}
+          position={cell.coords}
+          living={cell.alive}
+          interact={enableInteract}
+        />
+      );
+    });
+  });
+  // return (
+  //   {board.configuration.map( (row)=> {
+  //     return 1;
+  //   })}
+  // )
   return boardConfig(board.configuration).map((cell) => {
     return (
       <Cell
@@ -93,7 +103,7 @@ function PlayArea({setBoardConfiguration}) {
 }
 export default PlayArea;
 
- /* const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
+/* const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
 
   const runGame = () => {
     if (!gameRef.current) return;
@@ -150,9 +160,6 @@ export default PlayArea;
     );
   }
 }*/
-
-
-
 
 /*
 const {button} = controls;
