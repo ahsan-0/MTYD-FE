@@ -3,11 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HiddenSidebar from './HiddenSidebar';
+import { getPatterns } from "../api";
 
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
+const [patterns, setPatterns] = useState([]);
+
+useEffect(() => {
+  getPatterns().then(({data : {patterns}}) => {
+    setPatterns(patterns);
+  })
+}, []);
 
 const navigate = useNavigate();
 
@@ -20,11 +28,9 @@ const navigate = useNavigate();
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title="Patterns" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Pattern #1</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Pattern #2
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Pattern #3</NavDropdown.Item>
+              {patterns.length && patterns.map(pattern => {
+                return <NavDropdown.Item key={pattern._id}>"{pattern.pattern_name}"</NavDropdown.Item>
+              })}
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Separated link
@@ -49,3 +55,13 @@ const navigate = useNavigate();
 }
 
 export default Navigation;
+
+
+/*
+  <NavDropdown.Item href="#action/3.1">Pattern #1</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">
+                Pattern #2
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Pattern #3</NavDropdown.Item>
+
+*/
