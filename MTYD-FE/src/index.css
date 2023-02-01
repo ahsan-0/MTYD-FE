@@ -27,8 +27,8 @@
   border: solid 2px white;
 }
 
-body {
-  background-color: #242424 !important;
+body, main, .App {
+  background-color: #242424;
 }
 
 h2 {
@@ -43,14 +43,15 @@ h2 {
 
 main.tutorial {
   width: fit-content;
-  margin: 0 auto;
+  margin: 10px auto;
+  padding-bottom: 60px
 }
 
 img.tutorial_img {
   display: flow-root;
   margin: 20px auto 35px;
   border-radius: 20px;
-  box-shadow: 0 0 30px 5px rgb(228, 141, 228);
+  box-shadow: 0 0 20px 5px rgb(228, 141, 228);
 }
 
 img.user_img {
@@ -64,7 +65,7 @@ img.user_img {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 30px;
+  padding: 30px;
 }
 
 .tutorial_intro {
@@ -74,7 +75,7 @@ img.user_img {
   margin: 0 auto;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 0 0 30px 2px rgb(244, 63, 220);
+  box-shadow: 0 0 20px 2px rgb(244, 63, 220);
 }
 
 .App {
@@ -83,13 +84,7 @@ img.user_img {
 }
 
 
-  
-}
-
-html,
-body,
-#root,
-.anim {
+html, body, #root, .anim {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -99,7 +94,7 @@ body,
 .anim {
   position: absolute;
   width: 100%;
-  top: 40px;
+  top: 57px;
 }
 
 .game-controls {
@@ -135,7 +130,7 @@ h1 {
 
 .patterns_h1,
 .tutorial_h1 {
-  margin: 40px;
+  padding: 60px
 }
 
 .user_h1 {
@@ -169,6 +164,7 @@ button:focus-visible {
 
 div.card {
   margin: 20px 10px;
+  padding: 4px
 }
 
 .patterns_list {
@@ -177,7 +173,7 @@ div.card {
   grid-template-columns: repeat(auto-fit, minmax(330px, max-content));
   justify-content: center;
   gap: 30px;
-  margin-bottom: 90px;
+  padding-bottom: 90px;
 }
 
 .pattern_delete {
@@ -187,11 +183,12 @@ div.card {
 .card-img-top {
   object-fit: cover;
   max-height: 200px;
-=======
+}
+
 #nav {
  width: 100vw;
- position: absolute;
- z-index: 999;
+ /*position: absolute;
+ z-index: 999;*/
 }
 
 #offcanvas {
@@ -225,7 +222,7 @@ button#physics {
 }
 
 .leva-c-grzFYX {
-  width: fit-content 
+  width: fit-content;
   margin: auto
 }
 
@@ -244,4 +241,51 @@ button#physics {
   button {
     background-color: #f9f9f9;
   }
+}
+.cellgriddead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: auto;
+  height: auto;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 10px;
+
+
+}
+.cellboard {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  display: grid;
+  gap: 5px;
+  width: 50vh;
+  height: 50vh;
+  border: 1px white solid;
+  background-color: #696969;
+}
+.cellgridliving {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: auto;
+  height: auto;
+  background: rgba(65, 223, 0, 0.69);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(65, 223, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 10px;
+
+
 }

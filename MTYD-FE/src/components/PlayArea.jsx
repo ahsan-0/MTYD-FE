@@ -1,68 +1,99 @@
-import Cell from "./Cell";
 import { useState, useRef, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from 'uuid';
+//import PhysicsScene from "./PhysicsScene";
+import Cell from "./Cell";
 import { GameControlsContext } from "../contexts/GameControlsContext";
-import PhysicsScene from "./PhysicsScene";
-
-const boardString2 = "000110000111011 101110110100111 100011000101111 110011110011111 001001110000111 011101011101111 011011111010111 01100111001011 111011111110111 001111011101111 01110100111111 011010000110111 011111010001011 111011011110111 001010011101111";
-const boardString1 = "111111111111111 ".repeat(15);
-const boardString = "000000000000000 000000000000000 000000000000000 000000000000000 000000000000000 000000000000000 000000000000000 000000000000000 000000001111111 000000000000111 000000000000000 000000000000000 000000000000000 000000000000000 000000000000000"
-const boardArray = (str => str.split(" ").map(m => m.split("").map(m => +m)))(boardString);
+import { Physics, useBox } from "@react-three/cannon";
+import { useDispatch, useSelector } from "react-redux";
+import { nextBoard, flipRunning, flipWrap, increaseSpeed, decreaseSpeed } from "../features/board/boardSlice";
+import React from "react";
 
 
 function PlayArea({setBoardConfiguration}) {
-  const [gameIsRunning, setGameIsRunning] = useState(false);
-  const [gameGrid, setGameGrid] = useState(() => boardArray);
-  const [interval, setInterval] = useState(500);
-  const [edgeCondition, setEdgeCondition] = useState('wrap');
-  const [enableInteract, setEnableInteract] = useState(true);
-  const [enablePhysics, setEnablePhysics] = useState(false);
 
+  const board = useSelector((state) => state.board);
+  const dispatch = useDispatch();
+  const setGameGrid = () => dispatch(nextBoard());
+  const [enableInteract, setEnableInteract] = useState(true);
   const { controls } = useContext(GameControlsContext);
 
-  const gameRef = useRef(gameIsRunning);
-  gameRef.current = gameIsRunning;
+//  const [gameIsRunning, setGameIsRunning] = useState(false);
+ // const [gameGrid, setGameGrid] = useState(() => boardArray);
+ // const [interval, setInterval] = useState(500);
+//  const [edgeCondition, setEdgeCondition] = useState('wrap');
+//  const [enableInteract, setEnableInteract] = useState(true);
+
+// const { controls } = useContext(GameControlsContext);
+// const gameRef = useRef(gameIsRunning);
+// gameRef.current = gameIsRunning;
+
+  const [enablePhysics, setEnablePhysics] = useState(false);
   
   useEffect(() => {
-    setBoardConfiguration(gameGrid.length - 1);
+    setBoardConfiguration(board.configuration.length - 1);
   }, []);
   
   useEffect(() => {
-  const {button} = controls;
+    const { button } = controls;
     if (button === "start") {
-      setGameIsRunning(true);
-      gameRef.current = true;
-      runGame();
+      dispatch(flipRunning());
+      dispatch(nextBoard());
     } else if (button === "stop") {
-      setGameIsRunning(false);
-      gameRef.current = false;
-    } else if (button === "faster" && interval > 120) {
-      setInterval(prev => prev - 100);
+      dispatch(flipRunning());
+    } else if (button === "faster" && board.interval > 120) {
+      setInterval((prev) => prev - 100);
+      dispatch(increaseSpeed());
     } else if (button === "slower") {
-      setInterval(prev => prev + 100);
+      setInterval((prev) => prev + 100);
+      dispatch(decreaseSpeed());
     } else if (button === "reset") {
       setGameIsRunning(false);
+      dispatch(flipRunning());
       gameRef.current = false;
       setGameGrid(boardArray);
     } else if (button === "edge") {
-      setEdgeCondition("edge");
+      dispatch(flipWrap());
     } else if (button === "wrap") {
-      setEdgeCondition("wrap");
+      dispatch(flipWrap());
     } else if (button === "enableClick") {
       setEnableInteract(true);
     } else if (button === "disableClick") {
       setEnableInteract(false);
-    } else if (button === "enablePhysics") {
-      setEnableInteract(false);
-      setEnablePhysics(true);
-    } else if (button === "disablePhysics") {
-      setEnableInteract(true);
-      setEnablePhysics(false);
     }
   }, [controls]);
 
+  const boardConfig = (gameGrid) => {
+    const cellCoords = [];
+    for (let i = 0; i < gameGrid.length; i++) {
+      for (let j = 0; j < gameGrid[i].length; j++) {
+        cellCoords.push({
+          coords: [i, 0, j],
+          alive: board.configuration[i][j],
+        });
+      }
+    }
+    return cellCoords;
+  };
+  useEffect(() => {
+    if (board.running) {
+      setTimeout( () => dispatch(nextBoard()), board.interval)
+    }
+    
+  },[board.configuration]);
+  return boardConfig(board.configuration).map((cell) => {
+    return (
+      <Cell
+        key={uuidv4()}
+        position={cell.coords}
+        living={cell.alive}
+        interact={enableInteract}
+      />
+    );
+  });
+}
+export default PlayArea;
 
-  const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
+ /* const coordOffset = [[0, 1], [0, -1], [1, -1], [-1, 1], [1, 1], [-1, -1], [1, 0], [-1, 0]];
 
   const runGame = () => {
     if (!gameRef.current) return;
@@ -118,5 +149,42 @@ function PlayArea({setBoardConfiguration}) {
        })
     );
   }
-}
-export default PlayArea;
+}*/
+
+
+
+
+/*
+const {button} = controls;
+    if (button === "start") {
+      setGameIsRunning(true);
+      gameRef.current = true;
+      runGame();
+    } else if (button === "stop") {
+      setGameIsRunning(false);
+      gameRef.current = false;
+    } else if (button === "faster" && interval > 120) {
+      setInterval(prev => prev - 100);
+    } else if (button === "slower") {
+      setInterval(prev => prev + 100);
+    } else if (button === "reset") {
+      setGameIsRunning(false);
+      gameRef.current = false;
+      setGameGrid(boardArray);
+    } else if (button === "edge") {
+      setEdgeCondition("edge");
+    } else if (button === "wrap") {
+      setEdgeCondition("wrap");
+    } else if (button === "enableClick") {
+      setEnableInteract(true);
+    } else if (button === "disableClick") {
+      setEnableInteract(false);
+    } else if (button === "enablePhysics") {
+      setEnableInteract(false);
+      setEnablePhysics(true);
+    } else if (button === "disablePhysics") {
+      setEnableInteract(true);
+      setEnablePhysics(false);
+    }
+  }, [controls]);
+*/

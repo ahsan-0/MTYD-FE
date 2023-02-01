@@ -2,6 +2,40 @@ import BoardConfig from "./BoardConfig";
 import { useState, useRef, useCallback } from "react"
 import produce from "immer"
 
+import { useDispatch, useSelector } from "react-redux";
+import { nextBoard, flipRunning, flipWrap, increaseSpeed, decreaseSpeed } from "../features/board/boardSlice";
+const operations = [
+  [0, 1],
+  [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
+  [1, 0],
+  [-1, 0],
+];
+
+function Board() {
+  const board = useSelector(state => state.board);
+  const [grid, setGrid] = useState(board.configuration);
+  
+
+  return (
+    <BoardConfig
+      running={running}
+      setRunning={setRunning}
+      setGrid={setGrid}
+    />
+  );
+}
+
+export default Board
+
+/*
+import BoardConfig from "./BoardConfig";
+import { useState, useRef, useCallback } from "react"
+import produce from "immer"
+
 const operations = [
   [0, 1],
   [0, -1],
@@ -75,3 +109,5 @@ function Board() {
 }
 
 export default Board
+
+*/
