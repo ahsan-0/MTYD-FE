@@ -3,31 +3,18 @@ import { useAuth } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function UpdateProfile() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passConfirm, setPassConfirm] = useState("");
-  const { currentUser, updateUserPassword, updateUserEmail } = useAuth();
+  const [name, setName] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
+  const { currentUser, updateUserProfile } = useAuth();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (password !== passConfirm) {
-      setError("Passwords do not match");
-      return;
-    }
-    const promises = [];
     setLoading(true);
     setError("");
-
-    if (email !== currentUser.email) {
-      promises.push(updateUserEmail(email));
-    }
-    if (password) {
-      promises.push(updateUserPassword(password));
-    }
-    Promise.all(promises)
+    updateUserProfile(name, photoUrl)
       .then(() => {
         navigate("/");
       })
@@ -49,31 +36,22 @@ export default function UpdateProfile() {
       <div>
         {error && <p>{error}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="update-email">Email</label>
+          <label htmlFor="update-name">name</label>
           <input
-            id="update-email"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="update-password">Password</label>
-          <input
-            id="update-password"
-            type="passowrd"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="update-passconfirm">Confirm Password</label>
-          <input
-            id="update-passconfirm"
+            id="update-name"
             type="text"
-            value={passConfirm}
+            value={name}
             onChange={(e) => {
-              setPassConfirm(e.target.value);
+              setName(e.target.value);
+            }}
+          ></input>
+          <label htmlFor="update-photoUrl">photoUrl</label>
+          <input
+            id="update-photoUrl"
+            type="url"
+            value={photoUrl}
+            onChange={(e) => {
+              setPhotoUrl(e.target.value);
             }}
           ></input>
           <button type="submit">Submit</button>

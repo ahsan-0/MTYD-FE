@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
 import { Link } from "react-router-dom";
+import './Signup.css'
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -26,10 +27,11 @@ const ResetPassword = () => {
 
   return (
     <div className="login-form-container">
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="reset-form" onSubmit={handleSubmit}>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <p>{message}</p>
         <p>{currentUser && currentUser.email}</p>
+
         <label htmlFor="emailreset">
           <b>Email</b>
         </label>
@@ -42,12 +44,10 @@ const ResetPassword = () => {
           }}
           required
         />
+
         <button className="sub-but" type="submit" disabled={loading}>
           Reset Password
         </button>
-        <Link to="/login" className="forgot-link">
-          Log In
-        </Link>
       </form>
       <div className="signup-bar">
         <p>Dont have account.. </p>

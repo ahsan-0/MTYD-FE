@@ -1,0 +1,27 @@
+form {
+  margin: 0 0 24px 0;
+}
+
+.input-group {
+  margin: 0 0 16px 0;
+}
+
+.input-group label {
+  display: block;
+}
+
+input {
+  padding: 5px;
+  min-width: 30rem;
+}
+.reset-form{
+  display: flex;
+  flex-direction: column;
+}
+.reset-form button {
+  margin-top: 15px;
+  width: fit-content;
+}
+.signup-bar{
+  margin: 10px 0;
+}

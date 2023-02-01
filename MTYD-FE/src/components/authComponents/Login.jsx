@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../authComponents/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
+import "./Signup.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -27,29 +28,36 @@ function Login() {
       <div>
         <form onSubmit={handelSubmit}>
           {error && <p style={{ color: "red" }}>{error}</p>}
-          <label htmlFor="emailInput">Email</label>
-          <input
-            id="emailInput"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
-          <label id="passwordInput">Password</label>#
-          <input
-            id="passwordInput"
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
+          <div className="input-group">
+            <label htmlFor="emailInput">Email</label>
+            <input
+              id="emailInput"
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+            <label id="passwordInput">Password</label>
+            <input
+              id="passwordInput"
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            ></input>
+          </div>
           <button type="submit">Log in</button>
         </form>
       </div>
-      <div>
-        Need an account? <Link to="/signup">Sign Up</Link>
+      <div className="form-links">
+        <div>
+          Need an account? <Link to="/account">Sign Up</Link>
+        </div>
+        <div>
+          Forget Password <Link to="/resetpassword ">Reset password </Link>
+        </div>
       </div>
     </>
   );

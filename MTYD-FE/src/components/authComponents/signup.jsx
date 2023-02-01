@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../authComponents/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
+import "./Signup.css";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ function Signup() {
     setLoading(true);
     signup(auth, email, password)
       .then((res) => {
-        navigate("/");
+        navigate("/updateprofile");
       })
       .catch((err) => {
         setError("Failed to create an account");
@@ -36,33 +37,39 @@ function Signup() {
       <div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="passowrd"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
-          <label htmlFor="passconfirm">Confirm Password</label>
-          <input
-            id="passconfirm"
-            type="text"
-            value={passConfirm}
-            onChange={(e) => {
-              setPassConfirm(e.target.value);
-            }}
-          ></input>
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="passowrd"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            ></input>
+          </div>
+          <div className="input-group">
+            <label htmlFor="passconfirm">Confirm Password</label>
+            <input
+              id="passconfirm"
+              type="text"
+              value={passConfirm}
+              onChange={(e) => {
+                setPassConfirm(e.target.value);
+              }}
+            ></input>
+          </div>
           <button type="submit">Submit</button>
         </form>
       </div>

@@ -1,7 +1,18 @@
 import React from "react";
 import produce from "immer";
+import "./DefaultBoard.css";
 
-function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generateEmptyGrid, runningRef, runSimulation }) {
+function DefaultBoard({
+  running,
+  setRunning,
+  grid,
+  setGrid,
+  cols,
+  rows,
+  generateEmptyGrid,
+  runningRef,
+  runSimulation,
+}) {
   return (
     <div>
       <div className="button-container">
@@ -15,25 +26,29 @@ function DefaultBoard({ running, setRunning, grid, setGrid, cols, rows, generate
             }
           }}
         >
-          {running ? "stop" : "start"}
+          {running ? "Stop" : "Start"}
         </button>
+
         <button
           onClick={() => {
             const arrRows = [];
             for (let i = 0; i < rows; i++) {
-              arrRows.push(Array.from(Array(cols), () => (Math.random() > 0.7 ? 1 : 0)));
+              arrRows.push(
+                Array.from(Array(cols), () => (Math.random() > 0.7 ? 1 : 0))
+              );
             }
             setGrid(arrRows);
           }}
         >
-          random
+          Random
         </button>
+
         <button
           onClick={() => {
             setGrid(generateEmptyGrid());
           }}
         >
-          clear
+          Clear
         </button>
       </div>
       <div

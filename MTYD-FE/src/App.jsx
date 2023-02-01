@@ -13,6 +13,8 @@ import Showuser from "./components/ShowUser";
 import { Logout } from "./components/authComponents/Logout";
 import UpdateProfile from "./components/authComponents/Updateprofile";
 import ResetPassword from "./components/authComponents/ResetPassword";
+import "./App.css";
+
 const operations = [
   [0, 1],
   [0, -1],
@@ -23,6 +25,7 @@ const operations = [
   [1, 0],
   [-1, 0],
 ];
+
 const App = () => {
   const [running, setRunning] = useState(false);
   const [rows, setRows] = useState(0);
@@ -31,6 +34,7 @@ const App = () => {
   const [grid, setGrid] = useState([]);
   const runningRef = useRef(running);
   runningRef.current = running;
+
   const generateEmptyGrid = () => {
     const arrRows = [];
     for (let i = 0; i < rows; i++) {
@@ -38,6 +42,7 @@ const App = () => {
     }
     return arrRows;
   };
+
   const runSimulation = useCallback(() => {
     if (!runningRef.current) {
       return;
@@ -65,6 +70,7 @@ const App = () => {
     });
     setTimeout(runSimulation, 300);
   }, []);
+
   return (
     <>
       <AuthProvider>
@@ -89,6 +95,7 @@ const App = () => {
               />
             }
           />
+
           <Route
             path="/patterns"
             element={
@@ -104,8 +111,10 @@ const App = () => {
               />
             }
           />
+
           <Route path="/how-to-play" element={<Tutorial />} />
         </Routes>
+
         <DefaultBoard
           running={running}
           setRunning={setRunning}
@@ -121,4 +130,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;

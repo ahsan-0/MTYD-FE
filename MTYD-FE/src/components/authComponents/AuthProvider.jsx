@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   updateEmail,
   updatePassword,
+  updateProfile,
 } from "firebase/auth";
 
 export const AuthContext = React.createContext();
@@ -42,7 +43,12 @@ export function AuthProvider({ children }) {
   function updateUserPassword(password) {
     return updatePassword(auth.currentUser, password);
   }
-
+  function updateUserProfile(name, photoUrl) {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoUrl,
+    });
+  }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -59,6 +65,7 @@ export function AuthProvider({ children }) {
     resetPassword,
     updateUserEmail,
     updateUserPassword,
+    updateUserProfile,
   };
 
   return (

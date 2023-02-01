@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Nav.css";
 
 function Nav() {
   return (
@@ -7,8 +8,7 @@ function Nav() {
       <Link to="/automatrix">Play Game</Link>
       <Link to="/how-to-play">Tutorial & Rules</Link>
       <Link to="/account">Account</Link>
-      <Link to="/updateprofile"> update profile</Link>
-      <Link to="/resetpassword "> reset password </Link>
+      <Link to="/updateprofile">Update profile</Link>
     </nav>
   );
 }
