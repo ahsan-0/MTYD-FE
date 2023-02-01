@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import {
   nextBoard,
   flipRunning,
   flipWrap,
   increaseSpeed,
   decreaseSpeed,
+  increaseBoard,
+  decreaseBoard,
 } from "../features/board/boardSlice";
 import { useEffect, useContext } from "react";
-import { GameControlsContext } from '../contexts/GameControlsContext';
+import { GameControlsContext } from "../contexts/GameControlsContext";
 import GameControls from "./GameControls";
+import CellTwo from "./CellTwo.jsx";
 
 function PlayAreaTwo() {
   const { controls } = useContext(GameControlsContext);
@@ -19,9 +22,10 @@ function PlayAreaTwo() {
       dispatch(flipRunning());
       dispatch(nextBoard());
     } else if (button === "stop") {
-      dispatch(flipRunning());
+      dispatch(increaseBoard());
+      //dispatch(flipRunning());
     } else if (button === "faster" && board.interval > 120) {
-      dispatch(increaseSpeed());
+      dispatch(decreaseBoard());
     } else if (button === "slower") {
       dispatch(decreaseSpeed());
     } else if (button === "reset") {
@@ -41,31 +45,39 @@ function PlayAreaTwo() {
   }, [controls]);
   const board = useSelector((state) => state.board);
   const dispatch = useDispatch();
-  const grid = "1fr "
-  const gridcolumns = grid.repeat(board.configuration.length)
+  const grid = "1fr ";
+  const gridcolumns = grid.repeat(board.configuration.length);
+
   function grimReaper(cell) {
     if (cell === 1) {
-      return "cellgridliving"
+      return "cellgridliving";
     }
-    return "cellgriddead"
+    return "cellgriddead";
   }
+
   useEffect(() => {
     if (board.running) {
-      setTimeout( () => dispatch(nextBoard()), board.interval)
+      setTimeout(() => dispatch(nextBoard()), board.interval);
     }
-  },[board.configuration]);
+  }, [board.configuration]);
+
+
+
   return (
     <>
-    <div className="cellboard" style={{ gridTemplateColumns: gridcolumns, }}>
-      {board.configuration.map( (row) => {
-         return row.map( (cell) => {
-            return <div key={uuidv4()} className={grimReaper(cell)}></div>
-         }) 
-      })}
-    </div>
-    <GameControls />
+      <div className="cellboard" style={{ gridTemplateColumns: gridcolumns }}>
+        {board.configuration.map((row, i) => {
+          return row.map((cell, k) => {
+            return <CellTwo location={[i,k]} key={uuidv4()} alive={cell} />;
+          });
+        })}
+      </div>
+      <GameControls />
     </>
   );
 }
 
 export default PlayAreaTwo;
+
+
+  

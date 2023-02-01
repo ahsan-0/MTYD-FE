@@ -4,20 +4,19 @@ import { Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import retro from '../assets/retro.json';
 import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
+import { useDispatch, useSelector } from "react-redux";
 
 function Table({boardConfiguration}) {
-  const texture = new THREE.TextureLoader().load(img);
-  const boxLength = boardConfiguration;
+  const board = useSelector((state) => state.board);
+  const texture = board.tableTexture
+  const boxLength = board.configuration.length - 1//
   
-  const {controls} = useContext(GameControlsContext);
 
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
     return <meshMatcapMaterial matcap={matcap} />
   };
-  
-  if (controls.button !== "enablePhysics") {
-  return (
+    return (
     <><mesh position={[boxLength / 2, -1, boxLength / 2]}>
       <meshMatcapMaterial
           opacity={1}
@@ -87,7 +86,7 @@ function Table({boardConfiguration}) {
       </Float></mesh>
     </>
   );
-}
+//}
 }
 export default Table;
 
