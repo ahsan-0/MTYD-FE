@@ -72,7 +72,6 @@ function PlayArea({setBoardConfiguration}) {
         });
       }
     }
-    console.log(cellCoords);
     return cellCoords;
   };
   useEffect(() => {
