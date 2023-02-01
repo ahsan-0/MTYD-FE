@@ -11,3 +11,11 @@ export const getUsers = () => {
 export const getPatternsByUser = username => {
   return axios.get(`https://automatrix-app.azurewebsites.net/api/users/${username}/patterns`)
 };
+
+export const postPattern = (username, pattern_name, pattern_body) => {
+  return axios.post(`https://automatrix-app.azurewebsites.net/api/patterns`, {
+    username,
+    pattern_name,
+    pattern_body
+  })
+};
