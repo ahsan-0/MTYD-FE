@@ -53,6 +53,7 @@ const Home = () => {
         ratio={0.1}
       />
         </EffectComposer>
+
         <PerspectiveCamera makeDefault fov={75} position={[10, 10, 10]} />
         <CameraControls />
 
