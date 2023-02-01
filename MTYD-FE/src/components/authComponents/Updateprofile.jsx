@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
 import { useNavigate } from "react-router-dom";
-
+import './Signup.css'
 export default function UpdateProfile() {
   const [name, setName] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");

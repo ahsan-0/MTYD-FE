@@ -21,7 +21,7 @@ function Signup() {
     setError("");
     setLoading(true);
     signup(auth, email, password)
-      .then((res) => {
+      .then((res) => { 
         navigate("/updateprofile");
       })
       .catch((err) => {
