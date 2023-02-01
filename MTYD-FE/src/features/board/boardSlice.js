@@ -3,10 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 export const boardSlice = createSlice({
   name: 'board',
   initialState: {
-    configuration: [[0,0,0,0,0],[0,0,0,0,0],[0,1,0,0,0],[0,1,0,0,0],[0,1,0,0,0]],
+    configuration: [[1,1,1,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
     running: false,
     wrap: true,
-    interval: 1000
+    interval: 2000 
   },
   reducers: {
     nextBoard: state => {
@@ -59,10 +59,10 @@ export const boardSlice = createSlice({
     return {...state, wrap: !state.wrap}
   },
   increaseSpeed: state => {
-    return {...state, interval: !state.interval + 150}
+    return {...state, interval: state.interval - 150}
   },
   decreaseSpeed: state => {
-    return {...state, interval: !state.interval - 150}
+    return {...state, interval: state.interval + 150}
   }
   }
 })
