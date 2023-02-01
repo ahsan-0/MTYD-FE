@@ -1,7 +1,6 @@
 import produce from "immer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { nextBoard, flipRunning, flipWrap, increaseSpeed, decreaseSpeed } from "../features/board/boardSlice";
 
 import { v4 as uuidv4 } from 'uuid';
 function BoardConfig({
@@ -20,7 +19,6 @@ function BoardConfig({
   setGenerated,
 }) {
   const [rowInput, setRowInput] = useState(0);
-  const dispatch = useDispatch();
   const [colInput, setColInput] = useState(0);
   const handleRowChange = (event) => {
     setRowInput(parseInt(event.target.value));
@@ -30,6 +28,7 @@ function BoardConfig({
   };
 
   const board = useSelector(state => state.board);
+
 
   useEffect(() => {
     setRows(rowInput);
