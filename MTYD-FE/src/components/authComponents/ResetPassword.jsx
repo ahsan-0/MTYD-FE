@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./AuthProvider";
 import { Link } from "react-router-dom";
-import './Signup.css'
+import "./Signup.css";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -51,7 +51,7 @@ const ResetPassword = () => {
       </form>
       <div className="signup-bar">
         <p>Dont have account.. </p>
-        <Link to="/account">Sign Up</Link>
+        <Link to="/signup">Sign Up</Link>
       </div>
     </div>
   );

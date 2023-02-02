@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../authComponents/AuthProvider";
+import { useAuth } from "./AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import "./Signup.css";

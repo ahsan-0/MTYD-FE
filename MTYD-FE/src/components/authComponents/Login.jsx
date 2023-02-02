@@ -53,7 +53,7 @@ function Login() {
       </div>
       <div className="form-links">
         <div>
-          Need an account? <Link to="/account">Sign Up</Link>
+          Need an account? <Link to="/signup">Sign Up</Link>
         </div>
         <div>
           Forget Password <Link to="/resetpassword ">Reset password </Link>
