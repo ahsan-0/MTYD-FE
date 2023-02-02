@@ -19,3 +19,7 @@ export const postPattern = (username, pattern_name, pattern_body) => {
     pattern_body
   })
 };
+
+export const deletePattern = id => {
+  return axios.delete(`https://automatrix-app.azurewebsites.net/api/patterns/${id}`);
+};
