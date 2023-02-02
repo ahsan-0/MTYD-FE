@@ -1,4 +1,6 @@
-form {
+
+
+.reset-form, #signup_form, .login_form {
   margin: 0 50%;
 }
 
@@ -65,7 +67,7 @@ label,
   margin: auto;
 }
 
-input {
+.login_input {
   padding: 5px;
   width: fit-content;
   color: black;

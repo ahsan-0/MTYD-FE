@@ -37,12 +37,12 @@ function Signup() {
       <p>Create an account below.</p>
       <section>
         {error && <p className="login_error">{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form id="signup_form" onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="signup_label" htmlFor="email">
               Email
             </label>
-            <input
+            <input className="login_input"
               id="email"
               type="email"
               value={email}
@@ -56,6 +56,7 @@ function Signup() {
               Password
             </label>
             <input
+            className="login_input"
               id="password"
               type="passowrd"
               value={password}
@@ -69,6 +70,7 @@ function Signup() {
               Confirm Password
             </label>
             <input
+            className="login_input"
               id="passconfirm"
               type="text"
               value={passConfirm}

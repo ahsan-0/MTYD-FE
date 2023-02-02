@@ -28,7 +28,7 @@ function Login() {
       <h1>Login</h1>
       <p>Already have an account? Please log in below.</p>
       {error && <p className="login_error">{error}</p>}
-      <form onSubmit={handelSubmit}>
+      <form className="login_form" onSubmit={handelSubmit}>
         <div className="input-group">
           <label htmlFor="emailInput">Email</label>
           <input

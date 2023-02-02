@@ -38,6 +38,7 @@ const ResetPassword = () => {
           <b>Email</b>
         </label>
         <input
+        className="login_input"
           type="text"
           placeholder="Enter email address"
           id="emailreset"
