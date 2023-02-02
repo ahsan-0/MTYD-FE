@@ -33,8 +33,8 @@ function Signup() {
   }
 
   return (
-    <>
-      <div>
+    <main className="signup_main">
+      <section>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -72,11 +72,11 @@ function Signup() {
           </div>
           <button type="submit">Submit</button>
         </form>
-      </div>
-      <div className="w-100 text-center mt-2">
+      </section>
+      <p className="w-100 text-center mt-2">
         Already have an account? <Link to="/login">Log In</Link>
-      </div>
-    </>
+      </p>
+    </main>
   );
 }
 

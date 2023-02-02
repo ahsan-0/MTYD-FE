@@ -24,7 +24,7 @@ function Login() {
   }
 
   return (
-    <>
+    <main className="login_main">
       <div>
         <form onSubmit={handelSubmit}>
           {error && <p style={{ color: "red" }}>{error}</p>}
@@ -59,7 +59,7 @@ function Login() {
           Forget Password <Link to="/resetpassword ">Reset password </Link>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 
