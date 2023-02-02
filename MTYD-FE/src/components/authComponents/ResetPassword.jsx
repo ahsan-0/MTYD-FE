@@ -27,6 +27,8 @@ const ResetPassword = () => {
 
   return (
     <main className="login-form-container">
+      <h1>Reset your password</h1>
+      <p>Provide your email to reset your password.</p>
       <form className="reset-form" onSubmit={handleSubmit}>
         {error && <p className="login_error">{error}</p>}
         <p>{message}</p>

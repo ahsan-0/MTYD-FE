@@ -21,7 +21,7 @@ function Signup() {
     setError("");
     setLoading(true);
     signup(auth, email, password)
-      .then((res) => { 
+      .then((res) => {
         navigate("/updateprofile");
       })
       .catch((err) => {
@@ -33,11 +33,15 @@ function Signup() {
 
   return (
     <main className="signup_main">
+      <h1>Sign up</h1>
+      <p>Create an account below.</p>
       <section>
         {error && <p className="login_error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label className="signup_label" htmlFor="email">Email</label>
+            <label className="signup_label" htmlFor="email">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -48,7 +52,9 @@ function Signup() {
             ></input>
           </div>
           <div className="input-group">
-            <label className="signup_label" htmlFor="password">Password</label>
+            <label className="signup_label" htmlFor="password">
+              Password
+            </label>
             <input
               id="password"
               type="passowrd"
@@ -59,7 +65,9 @@ function Signup() {
             ></input>
           </div>
           <div className="input-group">
-            <label className="signup_label" htmlFor="passconfirm">Confirm Password</label>
+            <label className="signup_label" htmlFor="passconfirm">
+              Confirm Password
+            </label>
             <input
               id="passconfirm"
               type="text"
@@ -69,7 +77,9 @@ function Signup() {
               }}
             ></input>
           </div>
-          <button id="signup_submit" type="submit">Submit</button>
+          <button id="signup_submit" type="submit">
+            Submit
+          </button>
         </form>
       </section>
       <p className="w-100 text-center mt-2">
