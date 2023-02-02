@@ -13,7 +13,9 @@ import {
   resetBoard,
   randomiseBoard,
   hideTitle,
-  clearTable
+  clearTable,
+  selectSky,
+  selectStars
 } from "../features/board/boardSlice";
 import React from "react";
 import CellTwo from "./CellTwo";
@@ -62,6 +64,10 @@ function PlayArea() {
       dispatch(hideTitle());
     } else if (button === "clear") {
       dispatch(clearTable());
+    } else if (button === "sky") {
+      dispatch(selectSky());
+    } else if (button === "stars") {
+      dispatch(selectStars());
     }
   }, [controls]);
 
