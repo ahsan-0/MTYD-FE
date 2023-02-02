@@ -4,5 +4,9 @@ import boardReducer from '../features/board/boardSlice'
 export default configureStore({
   reducer: {
     board: boardReducer
-  }
+  },
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  })
 })
