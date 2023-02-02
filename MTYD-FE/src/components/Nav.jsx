@@ -53,7 +53,7 @@ function handleClick(args) {
           </Nav>
           <Nav>
             <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
-            <Nav.Link onClick={() => navigate("users")}>Login</Nav.Link>
+            <Nav.Link onClick={() => navigate("login")}>Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
