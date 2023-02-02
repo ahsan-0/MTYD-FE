@@ -49,7 +49,7 @@ const handleClick = () => {
       <Modal.Footer>
         <Button onClick={() => {
             if (showSuccess) {
-              navigate(-1);
+              navigate('/3dgame');
             }
             props.onHide();
         }}>Close</Button>
