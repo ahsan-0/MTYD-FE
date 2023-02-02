@@ -25,9 +25,8 @@ function Login() {
 
   return (
     <main className="login_main">
-      <div>
+          {error && <p className="login_error">{error}</p>}
         <form onSubmit={handelSubmit}>
-          {error && <p style={{ color: "red" }}>{error}</p>}
           <div className="input-group">
             <label htmlFor="emailInput">Email</label>
             <input
@@ -48,17 +47,14 @@ function Login() {
               }}
             ></input>
           </div>
-          <button type="submit">Log in</button>
+          <button id="login_submit" type="submit">Log in</button>
         </form>
-      </div>
-      <div className="form-links">
-        <div>
+        <p className="login_p">
           Need an account? <Link to="/signup">Sign Up</Link>
-        </div>
-        <div>
+        </p>
+        <p className="login_p">
           Forget Password <Link to="/resetpassword ">Reset password </Link>
-        </div>
-      </div>
+        </p>
     </main>
   );
 }
