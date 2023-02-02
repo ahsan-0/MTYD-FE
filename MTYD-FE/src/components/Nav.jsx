@@ -6,10 +6,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useEffect, useState } from "react";
 import HiddenSidebar from './HiddenSidebar';
 import { getPatterns } from "../api";
+import { useDispatch, useSelector } from "react-redux";
+import { displayPattern } from "../features/board/boardSlice";
 
 function Navigation() {
 const [showSidebar, setShowSidebar] = useState(false);
 const [patterns, setPatterns] = useState([]);
+const dispatch = useDispatch();
+const navigate = useNavigate();
 
 useEffect(() => {
   getPatterns().then(({data : {patterns}}) => {
@@ -17,7 +21,12 @@ useEffect(() => {
   })
 }, []);
 
-const navigate = useNavigate();
+function handleClick(args) {
+  return () => {
+    dispatch(displayPattern(args));
+    navigate("3dgame");
+  };
+};
 
   return (
     <>
@@ -29,11 +38,11 @@ const navigate = useNavigate();
           <Nav className="me-auto">
             <NavDropdown title="Patterns" id="collasible-nav-dropdown">
               {patterns.length && patterns.map(pattern => {
-                return <NavDropdown.Item key={pattern._id}>"{pattern.pattern_name}"</NavDropdown.Item>
+                return <NavDropdown.Item key={pattern._id} onClick={handleClick(pattern.pattern_body)}>"{pattern.pattern_name}"</NavDropdown.Item>
               })}
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item onClick={() => navigate("")}>
+                Home
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link onClick={() => navigate("tutorial")}>How to play</Nav.Link>
@@ -44,7 +53,7 @@ const navigate = useNavigate();
           </Nav>
           <Nav>
             <Nav.Link onClick={() => setShowSidebar(true)}>Game tips</Nav.Link>
-            <Nav.Link onClick={() => navigate("users")}>Users</Nav.Link>
+            <Nav.Link onClick={() => navigate("users")}>Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
