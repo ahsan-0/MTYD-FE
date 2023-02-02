@@ -6,11 +6,10 @@ import { useContext } from "react";
 import { GameControlsContext } from "../contexts/GameControlsContext";
 import { useDispatch, useSelector } from "react-redux";
 
-function Table({boardConfiguration}) {
+function Table() {
   const board = useSelector((state) => state.board);
-  const texture = board.tableTexture
-  const boxLength = board.configuration.length - 1//
-  
+  const texture = board.tableTexture;
+  const boxLength = board.configuration.length - 1;
 
   function MatCap({texture}) {
     const [matcap] = useMatcapTexture(texture, 256);
@@ -71,7 +70,7 @@ function Table({boardConfiguration}) {
         <boxGeometry args={[1, 0.6, boxLength + 3]}/>
       </mesh>
 
-      <mesh position = {[-4, 5, -5]}>
+      {useSelector(state => state.board.title) && <mesh position = {[-4, 5, -5]}>
       <Float speed={2.4} rotationIntensity={2} floatIntensity={2} floatingRange={[0, 1]}>
       <Text3D 
       font={retro}
@@ -83,7 +82,7 @@ function Table({boardConfiguration}) {
       bevelThickness={0.02}
       bevelOffset={0}
       bevelSegments={5}>AUTOMATRIX<MatCap texture={'422509_C89536_824512_0A0604'}/></Text3D>
-      </Float></mesh>
+      </Float></mesh>}
     </>
   );
 //}
