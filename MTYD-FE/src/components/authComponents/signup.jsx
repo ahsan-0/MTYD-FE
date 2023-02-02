@@ -26,7 +26,6 @@ function Signup() {
       })
       .catch((err) => {
         setError("Failed to create an account");
-        console.log("signing up error",err);
       });
 
     setLoading(false);
@@ -35,10 +34,10 @@ function Signup() {
   return (
     <main className="signup_main">
       <section>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="login_error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label htmlFor="email">Email</label>
+            <label className="signup_label" htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -49,7 +48,7 @@ function Signup() {
             ></input>
           </div>
           <div className="input-group">
-            <label htmlFor="password">Password</label>
+            <label className="signup_label" htmlFor="password">Password</label>
             <input
               id="password"
               type="passowrd"
@@ -60,7 +59,7 @@ function Signup() {
             ></input>
           </div>
           <div className="input-group">
-            <label htmlFor="passconfirm">Confirm Password</label>
+            <label className="signup_label" htmlFor="passconfirm">Confirm Password</label>
             <input
               id="passconfirm"
               type="text"
@@ -70,7 +69,7 @@ function Signup() {
               }}
             ></input>
           </div>
-          <button type="submit">Submit</button>
+          <button id="signup_submit" type="submit">Submit</button>
         </form>
       </section>
       <p className="w-100 text-center mt-2">

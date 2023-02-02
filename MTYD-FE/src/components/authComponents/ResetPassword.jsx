@@ -26,9 +26,9 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className="login-form-container">
+    <main className="login-form-container">
       <form className="reset-form" onSubmit={handleSubmit}>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="login_error">{error}</p>}
         <p>{message}</p>
         <p>{currentUser && currentUser.email}</p>
 
@@ -53,7 +53,7 @@ const ResetPassword = () => {
         <p>Dont have account.. </p>
         <Link to="/signup">Sign Up</Link>
       </div>
-    </div>
+    </main>
   );
 };
 

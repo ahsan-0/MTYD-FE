@@ -1,36 +1,63 @@
 form {
-  margin: 0 0 24px 0;
+  margin: 0 50%;
 }
 
-* {
+.reset-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_error, .signup-bar {
+  color: red;
+  text-align: center
+}
+
+label, #login_submit, .login_p, #signup_submit, .w-100 {
   color: whitesmoke
 }
 
-.login_main, .signup_main {
+.login_main, .signup_main, .login-form-container {
   height: 100vh;
-  margin: 300px 80px
+  margin: 300px 0
 }
 
 .input-group {
   margin: 0 0 16px 0;
+  justify-content: center;
 }
 
-.input-group label {
-  display: block;
+.signup_label {
+  min-width: 200px;
+  text-align: center;
+}
+
+#signup_submit, #login_submit {
+margin: 0 -40px 20px;
+min-width: 100px;
+}
+
+.sub-but {
+  margin: 0 -40px 20px;
+  min-width: 140px;
+  padding: 9px
+}
+
+.login_p {
+  text-align: center;
+  margin: auto
 }
 
 input {
   padding: 5px;
-  min-width: 30rem;
-  color: black
+  width: fit-content;
+  color: black;
+
 }
-.reset-form{
-  display: flex;
-  flex-direction: column;
-}
+
 .reset-form button {
   margin-top: 15px;
-  width: fit-content;
 }
 .signup-bar{
   margin: 10px 0;
