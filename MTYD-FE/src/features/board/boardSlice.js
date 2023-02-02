@@ -4,20 +4,34 @@ import img from "../../assets/green.png";
 import { v4 as uuidv4 } from "uuid";
 import { useTexture } from "@react-three/drei";
 
+const boardArray = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+  [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], 
+  [0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+  [1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0],
+  [0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+  [0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+  [0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0],
+  [0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+  [0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1],
+  [0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0],
+  [0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
 export const boardSlice = createSlice({
   name: "board",
   initialState: {
-    configuration: [
-      [1, 1, 1, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0],
-    ],
+    configuration: boardArray,
     running: false,
     wrap: true,
-    interval: 2000,
+    interval: 1000,
     tableTexture: new THREE.TextureLoader().load(img),
+    title: true,
+    username: 'andy09'
   },
   reducers: {
     nextBoard: (state) => {
@@ -63,7 +77,7 @@ export const boardSlice = createSlice({
         configuration: nextBoard2,
       };
     },
-    flipRunning: (state) => {
+    flipRunning: (state, action) => {
       return { ...state, running: !state.running };
     },
     flipWrap: (state) => {
@@ -78,7 +92,7 @@ export const boardSlice = createSlice({
     increaseBoard: (state) => {
       const emptyRow = Array.from(state.configuration).fill(0);
       return {
-        ...state,
+        ...state, interval: 1200,
         configuration: [...state.configuration, emptyRow].map((row) => {
           const newRow = [...row, 0];
           return newRow.map((cell) => {
@@ -89,7 +103,7 @@ export const boardSlice = createSlice({
     },
     decreaseBoard: (state) => {
       return {
-        ...state,
+        ...state, interval: 1200,
         configuration: state.configuration
           .slice(0, state.configuration.length - 1)
           .map((row) => {
@@ -110,7 +124,34 @@ export const boardSlice = createSlice({
         : (configCopy[cellCoord[0]][cellCoord[1]] = 1);
       return { ...state, configuration: configCopy };
     },
-  },
+    resetBoard: state => {
+      return {...state, configuration: boardArray};
+    },
+    randomiseBoard: state => {
+      const rows = [];
+      for (let i = 0; i < state.configuration.length; i++) {
+        rows.push(Array.from(Array(state.configuration[i].length), () => {
+          return Math.random() > 0.7 ? 1 : 0;
+        }));
+      };
+
+      return {...state, configuration: rows}
+    },
+    hideTitle: state => {
+      return {...state, title: !state.title};
+    },
+    clearTable: state => {
+      const rows = [];
+      for (let i = 0; i < state.configuration.length; i++) {
+        rows.push(Array.from(Array(state.configuration[i].length), () => 0));
+      };
+      return {...state, configuration: rows};
+    },
+    displayPattern: (state, action) => {
+      const pattern = action.payload.split(" ").map(m => m.split("").map(m => +m));
+      return {...state, configuration: pattern};
+    }
+  }
 });
 
 // Action creators are generated for each case reducer function
@@ -123,6 +164,11 @@ export const {
   increaseBoard,
   decreaseBoard,
   updateBoard,
+  resetBoard,
+  randomiseBoard,
+  hideTitle,
+  clearTable,
+  displayPattern
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
