@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Nav";
 import Home from "./components/Home";
 import UserPatterns from "./components/UserPatterns";
-import Board from "./components/Board";
 import Patterns from "./components/Patterns";
 import Tutorial from "./components/Tutorial";
 import PlayAreaTwo from "./components/PlayAreaTwo";
