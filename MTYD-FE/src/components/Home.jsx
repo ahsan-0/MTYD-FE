@@ -56,7 +56,7 @@ const Home = () => {
 
         <PerspectiveCamera makeDefault fov={75} position={[10, 10, 10]} />
         <CameraControls />
-
+        <Stars/>
         <ambientLight intensity={0.8} />
         <Physics>
         </Physics>
