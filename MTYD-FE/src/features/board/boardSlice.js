@@ -31,7 +31,8 @@ export const boardSlice = createSlice({
     interval: 1000,
     tableTexture: new THREE.TextureLoader().load(img),
     title: true,
-    username: 'andy09'
+    username: 'andy09',
+    effect: 'sky'
   },
   reducers: {
     nextBoard: (state) => {
@@ -150,6 +151,12 @@ export const boardSlice = createSlice({
     displayPattern: (state, action) => {
       const pattern = action.payload.split(" ").map(m => m.split("").map(m => +m));
       return {...state, configuration: pattern};
+    },
+    selectSky: state => {
+      return {...state, effect: "sky"};
+    },
+    selectStars: state => {
+      return {...state, effect: "stars"};
     }
   }
 });
@@ -168,7 +175,9 @@ export const {
   randomiseBoard,
   hideTitle,
   clearTable,
-  displayPattern
+  displayPattern,
+  selectSky,
+  selectStars
 } = boardSlice.actions;
 
 export default boardSlice.reducer;
