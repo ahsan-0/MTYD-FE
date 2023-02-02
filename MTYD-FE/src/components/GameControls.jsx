@@ -5,6 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { GameControlsContext } from '../contexts/GameControlsContext';
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import React from 'react';
 import Form from 'react-bootstrap/Form';
@@ -20,6 +21,7 @@ const [showAlert, setShowAlert] = useState(false);
 const [alertMsg, setAlertMsg] = useState('');
 
 const [showSuccess, setShowSuccess] = useState(false);
+const location = useLocation();
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -105,6 +107,17 @@ return (
           </Button>
         </div>
       </Alert>
+
+      {location.pathname[1] === "3" && <Dropdown onClick={handleClick}>
+        <Dropdown.Toggle id="effects" variant="secondary">
+          Effects
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu variant="dark">
+          <Dropdown.Item id="stars">Stars</Dropdown.Item>
+          <Dropdown.Item id="sky">Sky</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>}
 
 <ButtonGroup className="button-module" onClick={handleClick} aria-label="Basic example">
   <Button id="start" variant="secondary">Start</Button>
