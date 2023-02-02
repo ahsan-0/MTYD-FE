@@ -11,6 +11,7 @@ export default function UpdateProfile() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -27,11 +28,11 @@ export default function UpdateProfile() {
         );
       })
       .then(() => {
-        setUserState(currentUser)
+        setUserState(currentUser);
         navigate("/");
       })
       .catch((err) => {
-        console.log("update profile error",err)
+        console.log("update profile error", err);
         setLoading(false);
         setError("Failed to update account");
       })
@@ -45,11 +46,14 @@ export default function UpdateProfile() {
   }
 
   return (
-    <>
-      <div>
-        {error && <p>{error}</p>}
-        <form onSubmit={handleSubmit} className="update-form">
-          <label htmlFor="update-name">User Name</label>
+    <div className="update_profile">
+      <h1>Update your profile</h1>
+      <p>You can update your profile details below.</p>
+
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit} className="update-form">
+        <div className="input-group">
+          <label htmlFor="update-name">Username</label>
           <input
             required
             id="update-name"
@@ -59,7 +63,9 @@ export default function UpdateProfile() {
               setUsername(e.target.value);
             }}
           ></input>
-          <label htmlFor="update-photoUrl">PhotoUrl</label>
+        </div>
+        <div className="input-group">
+          <label htmlFor="update-photoUrl">Photo Url</label>
           <input
             required
             id="update-photoUrl"
@@ -69,7 +75,9 @@ export default function UpdateProfile() {
               setPhotoUrl(e.target.value);
             }}
           ></input>
-          <label>Full Name</label>
+        </div>
+        <div className="input-group">
+          <label>Full name</label>
           <input
             required
             type="text"
@@ -77,9 +85,9 @@ export default function UpdateProfile() {
               setFullName(e.target.value);
             }}
           ></input>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }

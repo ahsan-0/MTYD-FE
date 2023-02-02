@@ -25,36 +25,42 @@ function Login() {
 
   return (
     <main className="login_main">
-          {error && <p className="login_error">{error}</p>}
-        <form onSubmit={handelSubmit}>
-          <div className="input-group">
-            <label htmlFor="emailInput">Email</label>
-            <input
-              id="emailInput"
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            ></input>
-            <label id="passwordInput">Password</label>
-            <input
-              id="passwordInput"
-              type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            ></input>
-          </div>
-          <button id="login_submit" type="submit">Log in</button>
-        </form>
-        <p className="login_p">
-          Need an account? <Link to="/signup">Sign Up</Link>
-        </p>
-        <p className="login_p">
-          Forget Password <Link to="/resetpassword ">Reset password </Link>
-        </p>
+      <h1>Login</h1>
+      <p>Already have an account? Please log in below.</p>
+      {error && <p className="login_error">{error}</p>}
+      <form onSubmit={handelSubmit}>
+        <div className="input-group">
+          <label htmlFor="emailInput">Email</label>
+          <input
+            id="emailInput"
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div className="input-group">
+          <label id="passwordInput">Password</label>
+          <input
+            id="passwordInput"
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
+        </div>
+        <button id="login_submit" type="submit">
+          Log in
+        </button>
+      </form>
+      <p className="login_p">
+        Need an account? <Link to="/signup">Sign Up</Link>
+      </p>
+      <p className="login_p">
+        Forget Password <Link to="/resetpassword ">Reset password </Link>
+      </p>
     </main>
   );
 }

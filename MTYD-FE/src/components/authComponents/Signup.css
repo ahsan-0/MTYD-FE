@@ -9,18 +9,33 @@ form {
   align-items: center;
 }
 
-.login_error, .signup-bar {
+.login_error,
+.signup-bar {
   color: red;
-  text-align: center
+  text-align: center;
 }
 
-label, #login_submit, .login_p, #signup_submit, .w-100 {
-  color: whitesmoke
+label,
+#login_submit,
+.login_p,
+#signup_submit,
+.w-100 {
+  color: whitesmoke;
 }
 
-.login_main, .signup_main, .login-form-container {
+.login_main,
+.signup_main,
+.login-form-container {
   height: 100vh;
-  margin: 300px 0
+  margin: 300px 0;
+}
+
+.login_main p,
+.signup_main p,
+.login-form-container p,
+.update_profile p {
+  text-align: center;
+  margin: 0 0 2rem 0;
 }
 
 .input-group {
@@ -33,40 +48,44 @@ label, #login_submit, .login_p, #signup_submit, .w-100 {
   text-align: center;
 }
 
-#signup_submit, #login_submit {
-margin: 0 -40px 20px;
-min-width: 100px;
+#signup_submit,
+#login_submit {
+  margin: 0 -40px 20px;
+  min-width: 100px;
 }
 
 .sub-but {
   margin: 0 -40px 20px;
   min-width: 140px;
-  padding: 9px
+  padding: 9px;
 }
 
 .login_p {
   text-align: center;
-  margin: auto
+  margin: auto;
 }
 
 input {
   padding: 5px;
   width: fit-content;
   color: black;
-
 }
 
 .reset-form button {
   margin-top: 15px;
 }
-.signup-bar{
+.signup-bar {
   margin: 10px 0;
 }
-.update-form *{
+.update-form * {
   display: block;
   margin: 5px;
   padding: 3px;
 }
-.update-form button{
+.update-form button {
   margin-top: 10px;
+}
+
+.update_profile {
+  margin: 5rem 0 0 0;
 }
