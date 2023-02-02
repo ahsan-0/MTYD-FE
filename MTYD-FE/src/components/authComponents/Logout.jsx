@@ -4,7 +4,7 @@ import { useAuth } from "./AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import "./Logout.css";
 
-export const Logout = () => {
+const Logout = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -12,7 +12,7 @@ export const Logout = () => {
   function handelLogOut() {
     logout()
       .then(() => {
-        navigate("/login");
+        navigate("/");
       })
       .catch((err) => {
         setError("Faild to log out");
@@ -21,7 +21,11 @@ export const Logout = () => {
 
   return (
     <div>
-      <button onClick={handelLogOut}>Log out</button>
+      <button onClick={handelLogOut} className="logout-btn">
+        Log out
+      </button>
     </div>
   );
 };
+
+export default Logout;
