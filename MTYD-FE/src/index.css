@@ -26,7 +26,9 @@
 }
 
 /*NEW* - height and width */
-body, main, .App {
+body,
+main,
+.App {
   background-color: #242424 !important;
   height: 100vh;
   width: 100vw;
@@ -52,8 +54,8 @@ main.tutorial {
   width: 100vw;
   margin: auto;
   padding-bottom: 60px;
-  height: 100%
- /* width: fit-content;
+  height: 100%;
+  /* width: fit-content;
   margin: 10px auto;
   padding-bottom: 60px;*/
 }
@@ -80,20 +82,20 @@ img.user_img {
 }
 
 .tutorial_intro {
- color: rgb(235, 216, 255);
+  color: rgb(235, 216, 255);
   font-size: 20px;
   width: 60%;
   margin: 0 auto;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 0 0 20px 2px rgb(244, 63, 220);
-/* From https://css.glass */
-background: rgba(231, 46, 123, 0.51);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.5px);
--webkit-backdrop-filter: blur(6.5px);
-border: 1px solid rgba(231, 46, 123, 0.55);
+  /* From https://css.glass */
+  background: rgba(231, 46, 123, 0.51);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border: 1px solid rgba(231, 46, 123, 0.55);
 }
 
 .App {
@@ -141,7 +143,7 @@ body,
   margin: -33px 30px;
   display: block;
   position: absolute;
-  top: -967px
+  top: -967px;
 }
 
 a {
@@ -178,6 +180,13 @@ h1 {
   margin: 70px 2px 30px;
 }
 
+.gametipsImg {
+  width: 80%;
+  height: 45%;
+  margin: 10px;
+  display: flex;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -209,7 +218,7 @@ div.card {
 }
 
 .card-body {
-  height: 430px
+  height: 430px;
 }
 
 .patterns_list {
@@ -225,7 +234,7 @@ div.card {
 .pattern_delete {
   position: absolute;
   bottom: 10px;
-  left: 20px
+  left: 20px;
 }
 
 .card-img-top {
@@ -234,11 +243,11 @@ div.card {
 }
 
 #nav {
- width: 100vw;
- height: 60px;
- position: absolute;
- top: 0;
- z-index: 999
+  width: 100vw;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  z-index: 999;
 }
 
 div.modal {
@@ -249,7 +258,7 @@ div.modal {
 }
 
 div.user_title {
-  margin: 90px 0 30px
+  margin: 90px 0 30px;
 }
 
 #offcanvas {
@@ -262,14 +271,15 @@ div.user_title {
 .button-module {
   margin: 5px 0;
   width: 650px;
-  height: 40px
+  height: 40px;
 }
 
 button.btn-secondary,
 #bg-nested-dropdown,
-button.dropdown-toggle, #save {
+button.dropdown-toggle,
+#save {
   font-size: 18px;
-  border: 1px solid white
+  border: 1px solid white;
 }
 
 button#save {
@@ -354,31 +364,34 @@ button#save {
 .alert {
   position: absolute;
   z-index: 9;
-  bottom: 500px
+  bottom: 500px;
 }
 
 @media (min-width: 1300px) {
   button.btn-secondary,
   #bg-nested-dropdown,
-  button.dropdown-toggle, #save {
+  button.dropdown-toggle,
+  #save {
     font-size: 24px;
     height: 50px;
   }
 
   #effects {
-    margin: -10px 0 0 -80px
+    margin: -10px 0 0 -80px;
   }
 
   .button-module {
     margin: 10px 0;
-    width: auto
+    width: auto;
   }
 }
 
-@media(min-width: 1600px) {
+@media (min-width: 1600px) {
   button.btn-secondary,
   #bg-nested-dropdown,
-  button.dropdown-toggle, #save, #effects {
+  button.dropdown-toggle,
+  #save,
+  #effects {
     border-radius: 0;
   }
 
@@ -397,6 +410,6 @@ button#save {
   }
 
   #effects {
-    margin: -60px 0 0 2vw
+    margin: -60px 0 0 2vw;
   }
 }
