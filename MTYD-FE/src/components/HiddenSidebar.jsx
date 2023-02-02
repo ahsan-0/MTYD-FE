@@ -13,6 +13,7 @@ function HiddenSidebar({ showSidebar, setShowSidebar }) {
           Multiply...or die. Is it a game or is it reality? Are you an automaton or the game master?
           <h5>Example Patterns </h5>
           <img className="gametipsImg" src="/pattern1.png" alt="pattern example 1" />
+          <img className="gametipsImg" src="/pattern2.png" alt="pattern example 2" />
           <img className="gametipsImg" src="/pattern3.png" alt="pattern example 3" />
           <img className="gametipsImg" src="/pattern4.png" alt="pattern example 4" />
         </Offcanvas.Body>
