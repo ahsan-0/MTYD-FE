@@ -6,6 +6,7 @@
   line-height: 24px;
   font-weight: 400;
   color-scheme: light dark;
+
   color: rgba(255, 255, 255, 0.87);
   /* background-color: rgb(127, 92, 217);*/
 
@@ -24,8 +25,17 @@
   border: solid 2px white;
 }
 
+/*NEW* - height and width */
 body, main, .App {
   background-color: #242424 !important;
+  height: 100vh;
+  width: 100vw
+}
+
+body,
+main,
+.App {
+  background-color: #242424;
 }
 
 h2 {
@@ -41,7 +51,8 @@ h2 {
 main.tutorial {
   width: 100vw;
   margin: auto;
-  padding-bottom: 60px
+  padding-bottom: 60px;
+  height: 100%
  /* width: fit-content;
   margin: 10px auto;
   padding-bottom: 60px;*/
@@ -69,25 +80,46 @@ img.user_img {
 }
 
 .tutorial_intro {
-  background-color: whitesmoke;
+ color: rgb(235, 216, 255);
   font-size: 20px;
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 0 0 20px 2px rgb(244, 63, 220);
+/* From https://css.glass */
+background: rgba(231, 46, 123, 0.51);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.5px);
+-webkit-backdrop-filter: blur(6.5px);
+border: 1px solid rgba(231, 46, 123, 0.55);
 }
 
 .App {
-  width: 100%;
   height: 80%;
 }
 
-html, body, #root, .anim {
+/*html, body, #root, .anim {
+  width: 100vw;
+  height: 100vh;
+  background: rgb(36, 36, 36);
+  background: linear-gradient(
+    184deg,
+    rgba(36, 36, 36, 1) 0%,
+    rgba(36, 36, 36, 1) 23%,
+    rgba(187, 188, 189, 1) 100%
+  );
+}*/
+
+html,
+body,
+#root,
+.anim {
+  /*width: 100%;*/
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 .anim {
@@ -129,7 +161,8 @@ h1 {
 
 .patterns_h1,
 .tutorial_h1 {
-  padding: 60px;
+  margin-top: 90px;
+  padding: 50px;
 }
 
 .user_h1 {
@@ -166,6 +199,10 @@ div.card {
   padding: 4px;
 }
 
+.card-body {
+  height: 430px
+}
+
 .patterns_list {
   margin: auto;
   width: 95%;
@@ -177,7 +214,9 @@ div.card {
 }
 
 .pattern_delete {
-  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  left: 20px
 }
 
 .card-img-top {
@@ -188,10 +227,20 @@ div.card {
 #nav {
  width: 100vw;
  height: 60px;
+ position: absolute;
+ top: 0;
+ z-index: 999
 }
 
 div.modal {
-  margin-top: 500px
+  margin-top: 500px;
+  width: 100vw;
+  /*position: absolute;
+ z-index: 999;*/
+}
+
+div.user_title {
+  margin: 90px 0 30px
 }
 
 #offcanvas {
@@ -201,10 +250,17 @@ div.modal {
   background-color: rgb(234, 68, 159);
 }
 
+.button-module {
+  margin: 5px 0;
+  width: 650px;
+  height: 40px
+}
+
 button.btn-secondary,
 #bg-nested-dropdown,
-button.dropdown-toggle {
+button.dropdown-toggle, #save {
   font-size: 18px;
+  border: 1px solid white
 }
 
 button#save {
@@ -243,7 +299,7 @@ button#save {
   width: auto;
   height: auto;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 1.5em;
+  border-radius: 10px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -252,16 +308,15 @@ button#save {
 }
 .cellboard {
   margin-left: auto;
-
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 50px;
   display: grid;
   gap: 1px;
   width: 60vh;
   height: 60vh;
   border: 1px white solid;
   background-color: #696969;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(15, 21, 22, 0.89);
   border-radius: 1.5em;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
@@ -277,9 +332,9 @@ button#save {
   width: auto;
   height: auto;
   /* From https://css.glass */
-  background: rgba(37, 146, 0, 0.51);
-  border-radius: 1.5em;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(245, 31, 217, 0.594);
+  border-radius: 10px;
+  box-shadow: 0 0 1px 2px rgba(18, 239, 255, 0.959);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(37, 146, 0, 0.99);
@@ -287,4 +342,46 @@ button#save {
   border: 1px solid rgba(65, 223, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin: 2px;
+}
+
+.alert {
+  position: absolute;
+  z-index: 9;
+  bottom: 500px
+}
+
+@media (min-width: 1300px) {
+  button.btn-secondary,
+  #bg-nested-dropdown,
+  button.dropdown-toggle, #save {
+    font-size: 24px;
+    height: 50px;
+  }
+
+  .button-module {
+    margin: 10px 0;
+    width: auto
+  }
+
+   button {
+    width: 
+  }
+}
+
+@media(min-width: 1600px) {
+  button.btn-secondary,
+  #bg-nested-dropdown,
+  button.dropdown-toggle, #save {
+    border-radius: 0;
+  }
+
+  #start {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  #save {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 }
