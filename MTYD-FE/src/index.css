@@ -29,7 +29,7 @@
 body, main, .App {
   background-color: #242424 !important;
   height: 100vh;
-  width: 100vw
+  width: 100vw;
 }
 
 body,
@@ -130,9 +130,17 @@ body,
 
 .game-controls {
   position: absolute;
-  bottom: 100px;
+  bottom: 5vh;
   width: 100%;
   z-index: 100;
+}
+
+#effects {
+  border-radius: 10px !important;
+  margin: 0 60px;
+  display: block;
+  position: absolute;
+  top: -967px
 }
 
 a {
@@ -307,9 +315,7 @@ button#save {
   margin: 2px;
 }
 .cellboard {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+  margin: auto auto 10vh;
   display: grid;
   gap: 1px;
   width: 60vh;
