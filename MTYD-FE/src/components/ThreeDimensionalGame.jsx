@@ -5,7 +5,6 @@ import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles
 import PlayArea from "./PlayArea";
 import Table from "./Table";
 import { useControls } from 'leva'
-import { Suspense, useState } from "react";
 import GameControls from './GameControls';
 
 function Zoom() {
@@ -17,7 +16,6 @@ function Zoom() {
   };
 
 function ThreeDimensionalGame() {
-  const [boardConfiguration, setBoardConfiguration] = useState('');
  
   return (
   <main id="three-d-main">
@@ -31,12 +29,10 @@ function ThreeDimensionalGame() {
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
     <OrbitControls/>
-    <Suspense fallback={null}>
     <Center>
-      <PlayArea setBoardConfiguration={setBoardConfiguration}/>
-      {boardConfiguration && <Table boardConfiguration={boardConfiguration}/>}
+      <PlayArea/>
+      <Table/>
     </Center>
-    </Suspense>
   </Canvas>
   </section>
   </main>)
