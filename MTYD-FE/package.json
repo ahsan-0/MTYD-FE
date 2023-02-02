@@ -9,14 +9,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/cannon": "^6.5.2",
+    "@react-three/drei": "^9.56.5",
+    "@react-three/postprocessing": "^2.7.0",
+    "@reduxjs/toolkit": "^1.9.2",
+    "bootstrap": "^5.2.3",
     "dotenv": "^16.0.3",
     "firebase": "^9.16.0",
     "immer": "^9.0.18",
+    "leva": "^0.9.34",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0"
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.8.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "@redux-devtools/core": "^3.13.1",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
