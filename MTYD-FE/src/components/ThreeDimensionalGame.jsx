@@ -1,11 +1,12 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Camera } from "three";
 import * as THREE from 'three'
-import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles } from "@react-three/drei";
+import { CameraControls, Center, OrbitControls, PerspectiveCamera, Sky, Sparkles, Stars, useSelect } from "@react-three/drei";
 import PlayArea from "./PlayArea";
 import Table from "./Table";
 import { useControls } from 'leva'
 import GameControls from './GameControls';
+import { useSelector } from "react-redux";
 
 function Zoom() {
     const { zoom } = useControls({ zoom: { value: 0.5, min: 0.05, max: 1.1, step: 0.01 } })
@@ -16,6 +17,7 @@ function Zoom() {
   };
 
 function ThreeDimensionalGame() {
+  const effect = useSelector(state => state.board.effect);
  
   return (
   <main id="three-d-main">
@@ -24,7 +26,8 @@ function ThreeDimensionalGame() {
   <Canvas>
     <PerspectiveCamera makeDefault fov={75} position={[25, 25, 15]}/>
     <Zoom/>
-    <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>
+    {effect === "stars" && <Stars/>}
+    {effect === "sky" && <Sky exposure={0.01} elevation={0.01} azimuth={90} rayleigh={0}/>}
     <Sparkles {...props}/>
     <pointLight position={[10, 0, 10]}/>
     <CameraControls/>
