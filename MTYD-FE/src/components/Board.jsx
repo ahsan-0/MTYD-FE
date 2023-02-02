@@ -1,4 +1,3 @@
-import BoardConfig from "./BoardConfig";
 import { useState, useRef, useCallback } from "react"
 import produce from "immer"
 

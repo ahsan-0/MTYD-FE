@@ -32,7 +32,6 @@ function PlayArea() {
     const { button } = controls;
     if (button === "start") {
       dispatch(flipRunning());
-      dispatch(nextBoard());
     } else if (button === "stop") {
       dispatch(flipRunning());
     } else if (button === "incSize") {
@@ -82,7 +81,7 @@ function PlayArea() {
     if (board.running) {
       setTimeout(() => dispatch(nextBoard()), board.interval);
     };
-  }, [board.configuration]);
+  }, [board.configuration, board.running]);
 
  /* const newStuff = board.configuration.map((row) => {
     row.map((cell) => {

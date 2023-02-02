@@ -64,7 +64,7 @@ function BoardConfig({
         </button>
       </div>
         <div className="board">
-          <div className="button-container">
+          <div className="button-container"> 
             <button
               className={ board.running ? "btn-stop" : "btn-start"}
               onClick={() => {

@@ -80,6 +80,7 @@ export const boardSlice = createSlice({
     flipRunning: (state, action) => {
       return { ...state, running: !state.running };
     },
+ 
     flipWrap: (state) => {
       return { ...state, wrap: !state.wrap };
     },
