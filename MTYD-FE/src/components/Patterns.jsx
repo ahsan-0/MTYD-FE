@@ -19,12 +19,12 @@ function Patterns() {
       setPatternsData(patternsData);
     });
   }, []);
- 
+
   return (<main>
     <h1 className="patterns_h1">Patterns</h1>
     <section className="patterns_list">
       {patternsData.map(pattern => {
-        return <PatternCard key={pattern._id} username={pattern.username} pattern_name={pattern.pattern_name} avatar_url={pattern.avatar_url} created_at={pattern.created_at} pattern_body={pattern.pattern_body}/>
+        return <PatternCard key={pattern._id} id={pattern._id} username={pattern.username} pattern_name={pattern.pattern_name} avatar_url={pattern.avatar_url} created_at={pattern.created_at} pattern_body={pattern.pattern_body}/>
       })}
     </section>
   </main>)
