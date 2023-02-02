@@ -25,7 +25,6 @@ function PlayAreaTwo() {
     const { button } = controls;
     if (button === "start") {
       dispatch(flipRunning());
-      dispatch(nextBoard());
     } else if (button === "stop") {
       dispatch(flipRunning());
     } else if (button === "incSize") {
@@ -75,7 +74,7 @@ function PlayAreaTwo() {
     if (board.running) {
       setTimeout(() => dispatch(nextBoard()), board.interval);
     }
-  }, [board.configuration]);
+  }, [board.configuration, board.running]);
 
 
 
