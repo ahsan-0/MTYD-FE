@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import DeletePattern from './DeletePattern';
 
 const stringToArray = str => str.split(" ").map(m => m.split("").map(m => +m));
 
-function PatternCard ({username, pattern_name, avatar_url, created_at, pattern_body}) {
-    return  <Card>
+function PatternCard ({id, username, pattern_name, avatar_url, created_at, pattern_body}) {
+  const [deleteMsg, setDeleteMsg] = useState(false);
+    
+    return <><Card>
     <Card.Header>
         <Nav variant="pills" defaultActiveKey="#first">
           <Nav.Item>
@@ -49,9 +53,15 @@ function PatternCard ({username, pattern_name, avatar_url, created_at, pattern_b
         }
         )}
         </div>
-        <Button className="pattern_delete" variant="primary">Delete</Button>
+        <Button onClick={() => setDeleteMsg(true)} className="pattern_delete" variant="primary">Delete</Button>
       </Card.Body>
     </Card>
+    
+    <DeletePattern id={id}
+        show={deleteMsg}
+        onHide={() => setDeleteMsg(false)}
+      />
+    </>
 };
 
 export default PatternCard;
