@@ -131,13 +131,14 @@ body,
 .game-controls {
   position: absolute;
   bottom: 5vh;
-  width: 100%;
   z-index: 100;
+  transform: translateY(20%);
+  transform: translateX(20%);
 }
 
 #effects {
   border-radius: 10px !important;
-  margin: 0 60px;
+  margin: -33px 30px;
   display: block;
   position: absolute;
   top: -967px
@@ -364,20 +365,20 @@ button#save {
     height: 50px;
   }
 
+  #effects {
+    margin: -10px 0 0 -80px
+  }
+
   .button-module {
     margin: 10px 0;
     width: auto
-  }
-
-   button {
-    width: 
   }
 }
 
 @media(min-width: 1600px) {
   button.btn-secondary,
   #bg-nested-dropdown,
-  button.dropdown-toggle, #save {
+  button.dropdown-toggle, #save, #effects {
     border-radius: 0;
   }
 
@@ -389,5 +390,13 @@ button#save {
   #save {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+  }
+
+  .game-controls {
+    transform: translateX(10%);
+  }
+
+  #effects {
+    margin: -60px 0 0 2vw
   }
 }
