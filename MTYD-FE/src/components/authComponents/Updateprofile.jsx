@@ -7,7 +7,7 @@ export default function UpdateProfile() {
   const [username, setUsername] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [fullName, setFullName] = useState("");
-  const { currentUser, updateUserProfile } = useAuth();
+  const { currentUser, updateUserProfile, setUserState } = useAuth();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function UpdateProfile() {
         );
       })
       .then(() => {
+        setUserState(currentUser)
         navigate("/");
       })
       .catch((err) => {
@@ -47,7 +48,7 @@ export default function UpdateProfile() {
     <>
       <div>
         {error && <p>{error}</p>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="update-form">
           <label htmlFor="update-name">User Name</label>
           <input
             required

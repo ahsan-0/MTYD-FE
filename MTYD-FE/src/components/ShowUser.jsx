@@ -1,21 +1,22 @@
-import React from "react";
 import { useAuth } from "./authComponents/AuthProvider";
 import "./ShowUser.css";
 
 function Showuser() {
-  const { currentUser } = useAuth();
+  
+  const { userState, currentUser } = useAuth();
+  
   if (currentUser) {
-    if (currentUser.displayName) {
+    if (userState && userState.displayName) {
       return (
         <>
           <img
             src={
-              currentUser.photoURL
-                ? currentUser.photoURL
+              userState.photoURL
+                ? userState.photoURL
                 : "https://image.shutterstock.com/image-vector/thin-line-user-icon-on-260nw-519039097.jpg"
             }
           ></img>
-          <h3>Welcome {currentUser.displayName}</h3>
+          <h3>Welcome {userState.displayName}</h3>
         </>
       );
     }

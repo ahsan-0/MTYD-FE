@@ -19,7 +19,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [userState, setUserState] = useState()
   function signup(auth, email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
@@ -66,6 +66,8 @@ export function AuthProvider({ children }) {
     updateUserEmail,
     updateUserPassword,
     updateUserProfile,
+    userState,
+    setUserState
   };
 
   return (
