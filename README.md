@@ -14,7 +14,7 @@ Option to go 3d using Three.js\
 Responsive and intuitive UI built using React
 
 ## Getting Started
-Clone the repository using the command:\
+Clone the repository using the command:
 ### `git clone https://github.com/SamPetcher/MTYD-FE.git`
 
 ## Install dependencies
