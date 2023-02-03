@@ -4,6 +4,7 @@ This is an user-friendly modern implementation of John Conway's Game of Life
 ## Technologies
 Redux: Used for state management\
 React: Used for UI components and rendering\
+Three.js: Used to Create 3d board and allows user to toggle between 2d and 3d\
 Firebase: Used for real-time data synchronization and user authentication
 
 ## Features
