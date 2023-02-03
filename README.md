@@ -14,14 +14,14 @@ Option to go 3d using Three.js\
 Responsive and intuitive UI built using React
 
 ## Getting Started
-Clone the repository using the command 
-git clone https://github.com/SamPetcher/MTYD-FE.git
+Clone the repository using the command:\
+### `git clone https://github.com/SamPetcher/MTYD-FE.git`
 
 ## Install dependencies
-npm install
+### `npm install`
 
 ## Start the development server
-npm run dev
+### `npm run dev`
 
 ## Conclusion
 This project uses the latest web technologies. The real-time synchronization and the ability to customize the initial state of the game make it a unique and interactive experience.
